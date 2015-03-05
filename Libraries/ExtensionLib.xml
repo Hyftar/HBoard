@@ -1,0 +1,769 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExtensionLib</name>
+    </assembly>
+    <members>
+        <member name="T:ExtensionLib.ByteArithmetic">
+            <summary>
+            Provides various static methods pertaining to <see cref="T:System.Byte"/> operations.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte},System.Int32,System.Int32,ExtensionLib.ByteOrder)">
+            <summary>
+            Returns an object of the specified type from a range of bytes within a sequence.
+            </summary>
+            <typeparam name="T">The type of the returned elements.</typeparam>
+            <param name="source">The sequence to extract the bytes from.</param>
+            <param name="position">The starting position of the bytes to extract.</param>
+            <param name="length">The amount of bytes to extract.</param>
+            <param name="endianness">The order in which bytes are read.</param>
+            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
+            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
+        </member>
+        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte},System.Int32,System.Int32)">
+            <summary>
+            Returns an object of the specified type from a range of bytes within a sequence.
+            </summary>
+            <typeparam name="T">The type of the returned elements.</typeparam>
+            <param name="source">The sequence to extract the bytes from.</param>
+            <param name="position">The starting position of the bytes to extract.</param>
+            <param name="length">The amount of bytes to extract.</param>
+            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
+            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
+        </member>
+        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            Returns an object of the specified type equivalent to a sequence of bytes.
+            </summary>
+            <typeparam name="T">The type of the returned elements.</typeparam>
+            <param name="source">The sequence of bytes to compute.</param>
+            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
+            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
+        </member>
+        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte},ExtensionLib.ByteOrder)">
+            <summary>
+            Returns an object of the specified type equivalent to a sequence of bytes.
+            </summary>
+            <typeparam name="T">The type of the returned elements.</typeparam>
+            <param name="source">The sequence of bytes to compute.</param>
+            <param name="endianness">The order in which bytes are read.</param>
+            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
+            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
+        </member>
+        <member name="T:ExtensionLib.ByteOrder">
+            <summary>
+            Specifies in which order bytes are handled.
+            </summary>
+        </member>
+        <member name="F:ExtensionLib.ByteOrder.LittleEndian">
+            <summary>
+            The least significant byte (lowest address) is stored first.
+            </summary>
+        </member>
+        <member name="F:ExtensionLib.ByteOrder.BigEndian">
+            <summary>
+            The most significant byte (highest address) is stored first.
+            </summary>
+        </member>
+        <member name="T:ExtensionLib.ExtensionMethods">
+            <summary>
+            Provides various static extension methods.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.InterpolateRGB(System.Drawing.Color,System.Drawing.Color,System.Double)">
+            <summary>
+            Interpolates linearly two colors the R, G and B channels (while preserving the source alpha level) using a supplied scale.
+            </summary>
+            <param name="source">The source color to interpolate.</param>
+            <param name="target">The target color to interpolate.</param>
+            <param name="scale">The intensity of the target color.</param>
+            <returns>The newly blended color.</returns>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.InterpolateARGB(System.Drawing.Color,System.Drawing.Color,System.Double)">
+            <summary>
+            Interpolates linearly two colors the R, G, B and alpha channels using a supplied scale.
+            </summary>
+            <param name="source">The source color to interpolate.</param>
+            <param name="target">The target color to interpolate.</param>
+            <param name="scale">The intensity of the target color.</param>
+            <returns>The newly blended color.</returns>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified object in the sequence.
+            </summary>
+            <typeparam name="T">The type of the elements in the sequence.</typeparam>
+            <param name="source">The sequence to test.</param>
+            <param name="value">The object to seek.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf``1(System.Collections.Generic.IEnumerable{``0},``0,System.Int32)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified object in the sequence.
+            </summary>
+            <typeparam name="T">The type of the elements in the sequence.</typeparam>
+            <param name="source">The sequence to test.</param>
+            <param name="value">The object to seek.</param>
+            <param name="startIndex">The search starting position.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> is outside the range of valid indexes for <paramref name="source"/>.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf``1(System.Collections.Generic.IEnumerable{``0},``0,System.Int32,System.Int32)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified object in the sequence.
+            </summary>
+            <typeparam name="T">The type of the elements in the sequence.</typeparam>
+            <param name="source">The sequence to test.</param>
+            <param name="value">The object to seek.</param>
+            <param name="startIndex">The search starting position.</param>
+            <param name="count">The number of positions to examine.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> is outside the range of valid indexes for <paramref name="source"/>.-or-<paramref name="count"/> is less than zero.-or-<paramref name="startIndex"/> and <paramref name="count"/> do not specify a valid section in <paramref name="source"/>.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.JoinFormat``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String)">
+            <summary>
+            Concatenates the members of a constructed <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection of <see cref="T:System.IFormattable"/>, using the specified separator between each member and a format to represent them as a string.
+            </summary>
+            <typeparam name="T">The type of the elements to concatenate.</typeparam>
+            <param name="list">A collection that contains the objects to concatenate.</param>
+            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="objectFormat">A standard or custom object format string.</param>
+            <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="list"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.JoinFormat``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.Object[])">
+            <summary>
+            Concatenates the members of a constructed <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection of <see cref="T:System.IFormattable"/>, using the specified separator between each member and a <b>composite</b> format to represent them as a string.
+            </summary>
+            <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
+            <param name="list">A collection that contains the objects to concatenate.</param>
+            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
+            <param name="args">An array object that contains zero or more objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
+            <typeparam name="T">The type of the elements to concatenate.</typeparam>
+            <exception cref="T:System.ArgumentNullException"><paramref name="list"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.JoinFormat``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.IFormatProvider)">
+            <summary>
+            Concatenates the members of a constructed <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection of <see cref="T:System.IFormattable"/>, using the specified separator between each member and a format to represent them as a string.
+            </summary>
+            <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
+            <param name="list">A collection that contains the objects to concatenate.</param>
+            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="objectFormat">A standard or custom object format string.</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <typeparam name="T">The type of the elements to concatenate.</typeparam>
+            <exception cref="T:System.ArgumentNullException"><paramref name="list"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.JoinFormat``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.IFormatProvider,System.Object[])">
+            <summary>
+            Concatenates the members of a constructed <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection of <see cref="T:System.IFormattable"/>, using the specified separator between each member and a <b>composite</b> format to represent them as a string.
+            </summary>
+            <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
+            <param name="list">A collection that contains the objects to concatenate.</param>
+            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <param name="args">An array object that contains zero or more objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
+            <typeparam name="T">The type of the elements to concatenate.</typeparam>
+            <exception cref="T:System.ArgumentNullException"><paramref name="list"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.JoinFormat``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.Func{``0,System.Object[]})">
+            <summary>
+            Concatenates the members of a constructed <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection of <see cref="T:System.IFormattable"/>, using the specified separator between each member and a <b>composite</b> format to represent them as a string.
+            </summary>
+            <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
+            <param name="list">A collection that contains the objects to concatenate.</param>
+            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
+            <param name="predicate">An array that contains zero or more functions that provide objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
+            <typeparam name="T">The type of the elements to concatenate.</typeparam>
+            <exception cref="T:System.ArgumentNullException"><paramref name="list"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.JoinFormat``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.Func{``0,System.Object}[])">
+            <summary>
+            Concatenates the members of a constructed <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection of <see cref="T:System.IFormattable"/>, using the specified separator between each member and a <b>composite</b> format to represent them as a string.
+            </summary>
+            <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
+            <param name="list">A collection that contains the objects to concatenate.</param>
+            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
+            <param name="predicate">A function that supplies the objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
+            <typeparam name="T">The type of the elements to concatenate.</typeparam>
+            <exception cref="T:System.ArgumentNullException"><paramref name="list"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.JoinFormat``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.IFormatProvider,System.Func{``0,System.Object[]})">
+            <summary>
+            Concatenates the members of a constructed <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection of <see cref="T:System.IFormattable"/>, using the specified separator between each member and a <b>composite</b> format to represent them as a string.
+            </summary>
+            <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
+            <param name="list">A collection that contains the objects to concatenate.</param>
+            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <param name="predicate">A function that supplies the objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
+            <typeparam name="T">The type of the elements to concatenate.</typeparam>
+            <exception cref="T:System.ArgumentNullException"><paramref name="list"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.JoinFormat``1(System.Collections.Generic.IEnumerable{``0},System.String,System.String,System.IFormatProvider,System.Func{``0,System.Object}[])">
+            <summary>
+            Concatenates the members of a constructed <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection of <see cref="T:System.IFormattable"/>, using the specified separator between each member and a <b>composite</b> format to represent them as a string.
+            </summary>
+            <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
+            <param name="list">A collection that contains the objects to concatenate.</param>
+            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
+            <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+            <param name="predicate">An array that contains zero or more functions that provide objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
+            <typeparam name="T">The type of the elements to concatenate.</typeparam>
+            <exception cref="T:System.ArgumentNullException"><paramref name="list"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.PrependPadding``1(System.Collections.Generic.IEnumerable{``0},System.Int32,``0)">
+            <summary>
+            Inserts an element a given amount of time at beginning of a sequence.
+            </summary>
+            <typeparam name="T">The type of the elements of the sequence.</typeparam>
+            <param name="source">The sequence to pad.</param>
+            <param name="length">The amount of times the <paramref name="paddingElement"/> is inserted.</param>
+            <param name="paddingElement">The element to insert.</param>
+            <returns>The newly padded sequence.</returns>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.AppendPadding``1(System.Collections.Generic.IEnumerable{``0},System.Int32,``0)">
+            <summary>
+            Inserts an element a given amount of time at end of a sequence.
+            </summary>
+            <typeparam name="T">The type of the elements of the sequence.</typeparam>
+            <param name="source">The sequence to pad.</param>
+            <param name="length">The amount of times the <paramref name="paddingElement"/> is inserted.</param>
+            <param name="paddingElement">The element to insert.</param>
+            <returns>The newly padded sequence.</returns>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.UniqueRandom``2(System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Returns unique random <see cref="T:System.Collections.Generic.KeyValuePair`2"/> entries from a sequence.
+            </summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+            <param name="source">The sequence to return unique random entries from.</param>
+            <returns>A sequence of random <see cref="T:System.Collections.Generic.KeyValuePair`2"/> entries.</returns>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexOfMin``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the index of the minimum value in a generic sequence.
+            </summary>
+            <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
+            <param name="source">A sequence of values to determine the minimum value of.</param>
+            <returns>The index of the minimum value in the sequence.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexOfMax``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the index of the maximum value in a generic sequence.
+            </summary>
+            <typeparam name="T">The type of the elements of <paramref name="source"/>.</typeparam>
+            <param name="source">A sequence of values to determine the maximum value of.</param>
+            <returns>The index of the maximum value in the sequence.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.ToIndexedDictionary``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns an <see cref="T:System.Collections.Generic.IDictionary`2"/> collection of elements from a sequence paired with their index.
+            </summary>
+            <param name="source">The sequence of elements to index.</param>
+            <typeparam name="T">The type of the elements in the sequence.</typeparam>
+            <returns>A dictionary of elements paired with their respective index as key.</returns>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.CountMany``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns the number of occurrences of the specified items in a sequence.
+            </summary>
+            <typeparam name="T">The type of the elements in the sequence.</typeparam>
+            <param name="source">The sequence to test.</param>
+            <param name="items">The items to count.</param>
+            <returns>The number of occurrences of the specified items.</returns>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.CountMany``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.IComparer)">
+            <summary>
+            Returns the number of occurrences of the specified items in a sequence.
+            </summary>
+            <typeparam name="T">The type of the elements in the sequence.</typeparam>
+            <param name="source">The sequence to test.</param>
+            <param name="items">The items to count.</param>
+            <param name="comparer">The <see cref="T:System.Collections.IComparer"/> object used to compare the objects in the two sequences.</param>
+            <returns>The number of occurrences of the specified items.</returns>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.TakeRange``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            Returns a specified number of contiguous elements from a given position in a sequence.
+            </summary>
+            <typeparam name="T">The type of the elements in the sequence.</typeparam>
+            <param name="source">The sequence to take from.</param>
+            <param name="position">The amount of positions to skip before starting to take.</param>
+            <param name="length">The amount of elements to take.</param>
+            <returns>A part of the supplied sequence sequence from the specified <paramref name="position"/> and <paramref name="length"/>.</returns>
+            <remarks>This method is actually just a shorthand for the Enumerable.Skip and Enumerable.Take methods.</remarks>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.Shuffle``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Shuffles the order of the elements contained within a list using the Fisher–Yates shuffling algorithm.
+            </summary>
+            <typeparam name="T">The type of the elements to shuffle.</typeparam>
+            <param name="list">A collection that contains the objects to shuffle.</param>
+            <returns>A scrambled list of the original items.</returns>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf(System.String,System.Char)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified Unicode character in the current <see cref="T:System.String"/> object.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="value">The Unicode character to seek.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf(System.String,System.Char,System.Int32)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified Unicode character in the current <see cref="T:System.String"/> object.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="value">The Unicode character to seek.</param>
+            <param name="startIndex">The search starting position.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> is outside the range of valid indexes for <paramref name="source"/>.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf(System.String,System.Char,System.Int32,System.Int32)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified Unicode character in the current <see cref="T:System.String"/> object.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="value">The Unicode character to seek.</param>
+            <param name="startIndex">The search starting position.</param>
+            <param name="count">The number of character positions to examine.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> is outside the range of valid indexes for <paramref name="source"/>.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf(System.String,System.String,System.Int32,System.StringComparison)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified string in the current <see cref="T:System.String"/> object.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="value">The string to seek.</param>
+            <param name="startIndex">The search starting position.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> is outside the range of valid indexes for <paramref name="source"/>.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified string in the current <see cref="T:System.String"/> object.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="value">The string to seek.</param>
+            <param name="startIndex">The search starting position.</param>
+            <param name="count">The number of character positions to examine.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> is outside the range of valid indexes for <paramref name="source"/>.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf(System.String,System.String,System.Int32)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified string in the current <see cref="T:System.String"/> object.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="value">The string to seek.</param>
+            <param name="startIndex">The search starting position.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> is outside the range of valid indexes for <paramref name="source"/>.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf(System.String,System.String,System.StringComparison)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified string in the current <see cref="T:System.String"/> object.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="value">The string to seek.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf(System.String,System.String)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified string in the current <see cref="T:System.String"/> object.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="value">The string to seek.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.IndexesOf(System.String,System.String,System.Int32,System.Int32,System.StringComparison)">
+            <summary>
+            Reports the zero-based indexes of all the occurrences of the specified string in the current <see cref="T:System.String"/> object.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="value">The string to seek.</param>
+            <param name="startIndex">The search starting position.</param>
+            <param name="count">The number of character positions to examine.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
+            <returns>The index positions of the <paramref name="value"/> parameter.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="startIndex"/> is outside the range of valid indexes for <paramref name="source"/>.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.CountCharacters(System.String,System.Char[])">
+            <summary>
+            Returns a number that represents the number of occurrences of the specified characters.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="characters">The sequence of characters to count.</param>
+            <returns>The number of occurrences of the specified characters.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.CountCharacters(System.String,System.Collections.Generic.IEnumerable{System.Char})">
+            <summary>
+            Returns a number that represents the number of occurrences of the specified characters.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="characters">The sequence of characters to count.</param>
+            <returns>The number of occurrences of the specified characters.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.CountCharacters(System.String,System.Collections.Generic.IEnumerable{System.Char},System.StringComparison)">
+            <summary>
+            Returns a number that represents the number of occurrences of the specified characters.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="characters">The sequence of characters to count.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
+            <returns>The number of occurrences of the specified characters.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.CountCharacters(System.String,System.Collections.Generic.IEnumerable{System.Char},System.Globalization.CultureInfo,System.Globalization.CompareOptions)">
+            <summary>
+            Returns a number that represents the number of occurrences of the specified characters.
+            </summary>
+            <param name="source">The string to test.</param>
+            <param name="characters">The sequence of characters to count.</param>
+            <param name="culture">The culture that supplies culture-specific comparison information.</param>
+            <param name="options">Options to use when performing the character comparison (such as ignoring case or symbols).</param>
+            <returns>The number of occurrences of the specified characters.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+        </member>
+        <member name="T:ExtensionLib.ControlStyleHelper">
+            <summary>
+            Provides static methods to alter controls' style attributes.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.ControlStyleHelper.SetControlStyle(System.Windows.Forms.ControlStyles,System.Boolean,System.Windows.Forms.Control[])">
+            <summary>
+            Sets one or more <see cref="T:System.Windows.Forms.ControlStyles"/> attributes to an array of controls.
+            </summary>
+            <param name="flag">One or more <see cref="T:System.Windows.Forms.ControlStyles"/> attributes to redefine.</param>
+            <param name="value">The new state of the supplied <paramref name="flag"/> attributes.</param>
+            <param name="controls">The controls to affect the style attribute(s) to.</param>
+        </member>
+        <member name="M:ExtensionLib.ControlStyleHelper.SetControlStyle(System.Windows.Forms.Control,System.Windows.Forms.ControlStyles,System.Boolean)">
+            <summary>
+            Sets one or more <see cref="T:System.Windows.Forms.ControlStyles"/> attributes to a single control.
+            </summary>
+            <param name="control">The control to affect the style attribute(s) to.</param>
+            <param name="flag">One or more <see cref="T:System.Windows.Forms.ControlStyles"/> attributes to redefine.</param>
+            <param name="value">The new state of the supplied <paramref name="flag"/> attributes.</param>
+        </member>
+        <member name="T:ExtensionLib.Range`1">
+            <summary>
+            Represents a generic range of <see cref="T:System.IComparable`1"/> objects.
+            </summary>
+            <typeparam name="T">The type of the range's units.</typeparam>
+        </member>
+        <member name="F:ExtensionLib.Range`1.Empty">
+            <summary>
+            Represents a <see cref="T:ExtensionLib.Range`1"/> that holds default <see cref="P:ExtensionLib.Range`1.Minimum"/> and <see cref="P:ExtensionLib.Range`1.Maximum"/> values.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.Range`1.#ctor(`0,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ExtensionLib.Range`1"/> struct with the specified extrema.
+            </summary>
+            <param name="minimum">The lower-bound value of the range.</param>
+            <param name="maximum">The upper-bound value of the range.</param>
+        </member>
+        <member name="M:ExtensionLib.Range`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ExtensionLib.Range`1"/> struct with the specified extrema.
+            </summary>
+            <param name="value">The value held by both the lower- and the upper-bound.</param>
+        </member>
+        <member name="M:ExtensionLib.Range`1.ToString">
+            <summary>
+            Returns a string that represents this range.
+            </summary>
+            <returns>A human-readable representation of this range.</returns>
+        </member>
+        <member name="M:ExtensionLib.Range`1.IsValid">
+            <summary>        
+            Determines if the range is valid.
+            </summary>
+            <returns>A boolean value indicating whether the range is valid (i.e. if <see cref="P:ExtensionLib.Range.Minimum"/> is lesser or equal to <see cref="P:ExtensionLib.Range.Maximum"/>.</returns>
+        </member>
+        <member name="M:ExtensionLib.Range`1.ContainsValue(`0)">
+            <summary>
+            Determines whether the provided value is inside the range.
+            </summary>
+            <param name="value">The value to test.</param>
+            <returns>A boolean value indicating whether the provided value is inside the range.</returns>
+        </member>
+        <member name="M:ExtensionLib.Range`1.IsInsideRange(ExtensionLib.Range{`0})">
+            <summary>
+            Determines whether the bounds of this range are situated within those of the supplied one.
+            </summary>
+            <param name="range">The parent range to test against.</param>
+            <returns>A boolean value indicating whether the extrema of this range are inclusive.</returns>
+        </member>
+        <member name="M:ExtensionLib.Range`1.ContainsRange(ExtensionLib.Range{`0})">
+            <summary>
+            Determines whether another range is contained within the bounds of this one.
+            </summary>
+            <param name="range">The child range to test.</param>
+            <returns>A boolean value indicating whether the provided range is situated inside this one.</returns>
+        </member>
+        <member name="P:ExtensionLib.Range`1.Minimum">
+            <summary>
+            Gets or sets the minimum value of the range.
+            </summary>
+        </member>
+        <member name="P:ExtensionLib.Range`1.Maximum">
+            <summary>
+            Gets or sets the maximum value of the range.
+            </summary>
+        </member>
+        <member name="T:ExtensionLib.MathHelper">
+            <summary>
+            Provides miscellaneous mathematical functions.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.MathHelper.Distance(System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            Computes the euclidean distance of two <see cref="T:System.Drawing.PointF"/>.
+            </summary>
+            <param name="firstPoint">The first point on the plane.</param>
+            <param name="secondPoint">The second point on the plane.</param>
+            <returns>The euclidean distance between two points.</returns>
+        </member>
+        <member name="M:ExtensionLib.MathHelper.Distance(System.Double,System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            Computes the projected euclidean distance of two <see cref="T:System.Drawing.PointF"/>.
+            </summary>
+            <param name="scalar">The magnitude factor of the metric.</param>
+            <param name="firstPoint">The first point on the plane.</param>
+            <param name="secondPoint">The second point on the plane.</param>
+            <returns>The euclidean distance of two <see cref="T:System.Drawing.PointF"/> multiplied by a given magnitude.</returns>
+        </member>
+        <member name="M:ExtensionLib.MathHelper.Distance``1(System.Double,``0[])">
+            <summary>
+            Computes the projected euclidean distance of two <see cref="T:System.Drawing.PointF"/>.
+            </summary>
+            <typeparam name="T">The type of the elements of the <paramref name="vectors"/> parameter.</typeparam>
+            <param name="scalar">The magnitude factor of the resulting metric.</param>
+            <param name="vectors">An array of <typeparamref name="T"/> representing vectorial lengths.</param>
+            <returns>The euclidean distance of the supplied vectorial lengths.</returns>
+        </member>
+        <member name="M:ExtensionLib.MathHelper.Distance``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Computes the euclidean distance of two series of matching dimension rank.
+            </summary>
+            <typeparam name="T">The type of the elements of the series.</typeparam>
+            <param name="firstSeries">The first series of values.</param>
+            <param name="secondSeries">The second series of values.</param>
+            <returns>The euclidean distance of the supplied series.</returns>
+        </member>
+        <member name="M:ExtensionLib.MathHelper.Distance``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            Computes the euclidean distance of two series of matching dimension rank.
+            </summary>
+            <typeparam name="T1">The type of the elements in <paramref name="firstSeries"/>.</typeparam>
+            <typeparam name="T2">The type of the elements in <paramref name="secondSeries"/>.</typeparam>
+            <param name="firstSeries">The first series of values.</param>
+            <param name="secondSeries">The second series of values.</param>
+            <returns>The euclidean distance of the supplied series multiplied by a given magnitude.</returns>
+        </member>
+        <member name="M:ExtensionLib.MathHelper.Distance``1(System.Double,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Computes the projected euclidean distance of two series of matching dimension rank.
+            </summary>
+            <typeparam name="T">The type of the elements of the series.</typeparam>
+            <param name="scalar">The magnitude factor of the resulting metric.</param>
+            <param name="firstSeries">The first series of values.</param>
+            <param name="secondSeries">The second series of values.</param>
+            <returns>The euclidean distance of the supplied series.</returns>
+        </member>
+        <member name="M:ExtensionLib.MathHelper.Distance``2(System.Double,System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            Computes the projected euclidean distance of two series of matching dimension rank.
+            </summary>
+            <typeparam name="T1">The type of the elements in <paramref name="firstSeries"/>.</typeparam>
+            <typeparam name="T2">The type of the elements in <paramref name="secondSeries"/>.</typeparam>
+            <param name="scalar">The magnitude factor of the resulting metric.</param>
+            <param name="firstSeries">The first series of values.</param>
+            <param name="secondSeries">The second series of values.</param>
+            <returns>The euclidean distance of the supplied series multiplied by a given magnitude.</returns>
+        </member>
+        <member name="T:ExtensionLib.RangeConverter`1">
+            <summary>
+            Provides a type converter to convert a <see cref="T:ExtensionLib.Range`1"/> object from one data type to another.
+            </summary>
+            <typeparam name="T">The type of the the range's units.</typeparam>
+            <remarks>Not yet supported, as type converters can't handle generic types.</remarks>
+        </member>
+        <member name="M:ExtensionLib.RangeConverter`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ExtensionLib.RangeConverter`1"/> class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.RangeConverter`1.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Determines whether this converter can convert a given source type to the native type of the converter.
+            </summary>
+            <returns>A boolean value indicating whether this type can be converted to a <see cref="T:ExtensionLib.Range`1"/>.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> object that provides a format context.</param>
+            <param name="sourceType">The source <see cref="T:System.Type"/> to test.</param>
+        </member>
+        <member name="M:ExtensionLib.RangeConverter`1.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Determines whether this converter can convert the native type of the converter to a given destination type.
+            </summary>
+            <returns>A boolean value indicating whether <see cref="T:ExtensionLib.Range`1"/> can be converted to a given destination type.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> object that provides a format context.</param>
+            <param name="destinationType">The destination <see cref="T:System.Type"/> to test.</param>
+        </member>
+        <member name="M:ExtensionLib.RangeConverter`1.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts the specified object to a <see cref="T:ExtensionLib.Range`1"/> object, using the specified context and culture information.
+            </summary>
+            <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> object that provides a format context.</param>
+            <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+            <param name="value">The <see cref="T:System.Object"/> to convert.</param>
+            <exception cref="T:System.NotSupportedException">The conversion couldn't be completed.</exception>
+            <exception cref="T:System.ArgumentException">The object could not be parsed.</exception>
+        </member>
+        <member name="M:ExtensionLib.RangeConverter`1.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Converts the specified object to the specified <see cref="T:System.Type"/>, using the specified context and culture information.
+            </summary>
+            <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> object that provides a format context.</param>
+            <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+            <param name="value">The <see cref="T:System.Object"/> to convert.</param>
+            <param name="destinationType">The <see cref="T:System.Type"/> to convert the object to.</param>
+            <exception cref="T:System.NotSupportedException">The conversion cannot be completed.</exception>
+        </member>
+        <member name="M:ExtensionLib.RangeConverter`1.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)">
+            <summary>
+            Creates an instance of this type given a set of property values for the object.
+            </summary>
+            <returns>The newly created object, or null if the object could not be created. The default implementation returns null.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> object that provides a format context.</param>
+            <param name="propertyValues">A dictionary of new property values. The dictionary contains a series of name-value pairs, one for each property returned from <see cref="M:ExtensionLib.RangeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])"/>.</param>
+            <exception cref="T:System.ArgumentException">Either the Minimum or Maximum property holds invalid values.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="propertyValues"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.RangeConverter`1.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Determines whether changing a value on this object should require a call to <see cref="M:ExtensionLib.RangeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)"/> to create a new value.
+            </summary>
+            <returns>A boolean value indicating whether the <see cref="M:ExtensionLib.RangeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)"/> method should be called when a change is made to one or more properties of this object.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> object that provides a format context.</param>
+        </member>
+        <member name="M:ExtensionLib.RangeConverter`1.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])">
+            <summary>
+            Retrieves the set of properties for this type.
+            </summary>
+            <returns>The set of properties that are exposed for this data type. If no properties are exposed, this method might return null.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> object that provides a format context.</param>
+            <param name="value">The value of the object to get the properties for.</param>
+            <param name="attributes">An array of <see cref="T:System.Attribute"/> objects that describe the properties.</param>
+        </member>
+        <member name="M:ExtensionLib.RangeConverter`1.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Determines if this object supports properties.
+            </summary>
+            <returns>A boolean value indicating whether the <see cref="M:ExtensionLib.RangeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])"/> method should be called to find the properties of this object.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> object that provides a format context.</param>
+        </member>
+        <member name="T:ExtensionLib.SocketMethods">
+            <summary>
+            Provides various socket-related static extension methods.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.SocketMethods.SetKeepAlive(System.Net.Sockets.Socket,System.Boolean,System.UInt32,System.UInt32)">
+            <summary>
+            Sets the <see cref="F:System.Net.Sockets.IOControlCode.KeepAliveValues"/> options of a socket.
+            </summary>
+            <param name="socket">The socket to modify.</param>
+            <param name="enabled">The state of the keep-alive operating mode.</param>
+            <param name="timeout">The duration to wait, in milliseconds, before the connection times out.</param>
+            <param name="retryInterval">The interval to wait, in milliseconds, between keep-alive failures.</param>
+        </member>
+        <member name="M:ExtensionLib.SocketMethods.IsAlive(System.Net.Sockets.Socket,System.Int32)">
+            <summary>
+            Determines whether a socket is available for reading.
+            </summary>
+            <param name="socket">The socket to poll.</param>
+            <param name="pollingTime">The time to wait for a response, in microseconds.</param>
+            <returns>A boolean value indicating whether the socket has replied.</returns>
+        </member>
+        <member name="T:ExtensionLib.StringArrayConverter">
+            <summary>
+            Provides a type converter to convert a string of character-separated values to and from an array of strings.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.StringArrayConverter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ExtensionLib.StringArrayConverter"/> class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.StringArrayConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Determines whether this converter can convert a given source type to the native type of the converter.
+            </summary>
+            <returns>A boolean value indicating whether this type can be converted to a <see cref="T:System.String"/> array.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> object that provides a format context.</param>
+            <param name="sourceType">The source <see cref="T:System.Type"/> to test.</param>
+        </member>
+        <member name="M:ExtensionLib.StringArrayConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts the specified object to a <see cref="T:System.String"/> array, using the specified context and culture information.
+            </summary>
+            <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+            <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+            <param name="value">The <see cref="T:System.Object"/> to convert.</param>
+            <exception cref="T:System.NotSupportedException">The conversion cannot be performed.</exception>
+        </member>
+        <member name="M:ExtensionLib.StringArrayConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Converts the specified object to the specified <see cref="T:System.Type"/>, using the specified context and culture information.
+            </summary>
+            <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> object that provides a format context.</param>
+            <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+            <param name="value">The <see cref="T:System.Object"/> to convert.</param>
+            <param name="destinationType">The <see cref="T:System.Type"/> to convert the object to.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="destinationType"/> parameter is null.</exception>
+            <exception cref="T:System.NotSupportedException">The conversion cannot be performed.</exception>
+        </member>
+    </members>
+</doc>
