@@ -10,10 +10,10 @@ using HBoard.Chess.Generation;
 using HBoard.Chess.Units;
 using HBoard.Logic;
 
-namespace HChess.Tests.Movement
+namespace HBoard.Tests.Movement
 {
     [TestClass]
-    public class BishopTestUnit
+    public class RookTestUnit
     {
         [TestMethod]
         public void TestClassicDefault()
@@ -31,19 +31,19 @@ namespace HChess.Tests.Movement
             });
             gameContext.Init();
 
-            var bishop = gameContext.Board
-                .Select((x, i) => new { Index = i, Cell = x == null ? null : x.Content as BishopUnit})
+            var rook = gameContext.Board
+                .Select((x, i) => new { Index = i, Cell = x == null ? null : x.Content as RookUnit })
                 .Where(x => x.Cell != null)
                 .First();
 
-            var path = bishop.Cell.GetMovementPaths(gameContext.Board, new Point(bishop.Index / 8, bishop.Index % 8)).First();
+            var path = rook.Cell.GetMovementPaths(gameContext.Board, new Point(rook.Index / 8, rook.Index % 8)).First();
 
             Assert.AreEqual(0, path.First().Length);
             Assert.AreEqual(0, path.Last().Length);
         }
 
         [TestMethod]
-        public void TestLastAxisIntersectOrigin()
+        public void TestAxes()
         {
             var options = new GameOptions
             {
@@ -52,9 +52,9 @@ namespace HChess.Tests.Movement
                     ChessPlayer white = (ChessPlayer) context.Players.First(),
                                 black = (ChessPlayer) context.Players.Last();
 
-                    board.AddUnit<BishopUnit>(Orientation.Vertical, white, Point.Empty, new Point(3, 4));
-                    board.AddUnit<RookUnit>(Orientation.Vertical, white, Point.Empty, new Point(1, 2));
-                    board.AddUnit<PawnUnit>(Orientation.Vertical, black, Point.Empty, new Point(5, 1));
+                    board.AddUnit<RookUnit>(Orientation.Horizontal, white, Point.Empty, new Point(3, 4));
+                    board.AddUnit<BishopUnit>(Orientation.Horizontal, white, Point.Empty, new Point(2, 4));
+                    board.AddUnit<PawnUnit>(Orientation.Horizontal, black, Point.Empty, new Point(4, 6));
                 },
                 BoardSize = new Size(8, 8)
             };
@@ -66,23 +66,23 @@ namespace HChess.Tests.Movement
             });
             gameContext.Init();
 
-            var bishop = gameContext.Board
-                .Select((x, i) => new { Index = i, Cell = x == null ? null : x.Content as BishopUnit })
+            var rook = gameContext.Board
+                .Select((x, i) => new { Index = i, Cell = x == null ? null : x.Content as RookUnit })
                 .Where(x => x.Cell != null)
                 .First();
 
-            var paths = bishop.Cell.GetMovementPaths(gameContext.Board, new Point(bishop.Index / 8, bishop.Index % 8));
-            MovementPath primePath = paths.First(), lastPath = paths.Last();
+            var paths = rook.Cell.GetMovementPaths(gameContext.Board, new Point(rook.Index / 8, rook.Index % 8));
+            MovementPath horizontalPath = paths.First(), verticalPath = paths.Last();
 
-            // Prime axis
-            Assert.AreEqual(primePath.First().Direction, Direction.Diagonal);
-            Assert.AreEqual(3, primePath.First().Length);
-            Assert.AreEqual(new Point(2, 3), primePath.Location);
+            // Horizontal axis
+            Assert.AreEqual(horizontalPath.First().Direction, Direction.Horizontal);
+            Assert.AreEqual(6, horizontalPath.First().Length);
+            Assert.AreEqual(new Point(3, 0), horizontalPath.Location);
 
-            // Last axis
-            Assert.AreEqual(lastPath.First().Direction, Direction.Diagonal);
-            Assert.AreEqual(7, lastPath.First().Length);
-            Assert.AreEqual(new Point(0, 7), lastPath.Location);
+            // Vertical axis
+            Assert.AreEqual(verticalPath.First().Direction, Direction.Vertical);
+            Assert.AreEqual(4, verticalPath.First().Length);
+            Assert.AreEqual(new Point(4, 4), verticalPath.Location);
         }
     }
 }

@@ -10,7 +10,7 @@ using HBoard.Chess.Generation;
 using HBoard.Chess.Units;
 using HBoard.Logic;
 
-namespace HChess.Tests.Movement
+namespace HBoard.Tests.Movement
 {
     [TestClass]
     public class QueenTestUnit
