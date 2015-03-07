@@ -18,7 +18,7 @@ namespace HBoard.Tests
     public class DrawTestUnit
     {
         [TestMethod]
-        public void TestMethod2()
+        public void TestKings()
         {
             var options = new GameOptions
             {
@@ -27,8 +27,8 @@ namespace HBoard.Tests
                     ChessPlayer white = (ChessPlayer) context.Players.First(),
                                 black = (ChessPlayer) context.Players.Last();
 
-                    board.AddUnit<KingUnit>(white, Point.Empty, new Point(4, 0));
-                    board.AddUnit<KingUnit>(black, Point.Empty, new Point(4, 0));
+                    board.AddUnit<KingUnit>(Orientation.Vertical, white, Point.Empty, new Point(0, 4));
+                    board.AddUnit<KingUnit>(Orientation.Vertical, black, Point.Empty, new Point(0, 4));
                 },
                 BoardSize = new Size(8, 8)
             };
@@ -40,12 +40,11 @@ namespace HBoard.Tests
             });
             gameContext.Init();
 
-            var enumerator = new IndexableEnumerator<BoardCell>(gameContext.Board.GetEnumerator(), gameContext.Board.Cells);
+            var enumerator = gameContext.Board.Cells.GetArrayEnumerator();
             while (enumerator.MoveNext())
             {
                 Debug.WriteLine(enumerator.Index + ": " + (enumerator.Current == null ? "null" : enumerator.Positions.JoinFormat(", ", "[{0}]", enumerator.Current)));
             }
-
 
             Assert.IsTrue(gameContext.IsDraw());
         }

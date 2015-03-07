@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Diagnostics;
+using ExtensionLib;
 using HBoard.Core;
 using HBoard.Logic;
 using HBoard.Chess.Logic;
-using ExtensionLib;
 
 namespace HBoard.Chess.Units
 {
@@ -34,109 +35,46 @@ namespace HBoard.Chess.Units
             return true;
         }
 
-        // Glossary:
-        // O: Origin (zero-adjusted; represents System.Point)
-        // T: Target (coincides with the metric)
-        // X: BoardCell
-
-        // Full path representation:
-            // O -> Point(x,y)
-            // X
-            // X T
-
-        // First vector (w/ MovementType.None):
-            // O
-            // X
-            // X -> Metric (2)
-
-        // Second vector (w/ MovementType.Last):
-            // O T -> Metric (1)
-
         public override IEnumerable<MovementPath> GetMovementPaths(GameBoard board, Point position)
         {
-            // Generate the array with 2 slots, as there are only two axes.
             MovementPath[] paths = new MovementPath[2];
 
-            // To be computed using the passed coordinates (i.e. 'position').
             Point primeLocation = Point.Empty;
             Point lastLocation = Point.Empty;
 
-            // To be computed (i.e. the amount of cells between the origin and the target position).
-            int primeMetric = 0;
-            int lastMetric = 0;
-            int primeOriginAdjustment = position.X - position.Y;
-            int lastOriginAdjustment = position.X + position.Y;
-            bool hasCrossedOrigin = false;
-            bool primeMetricEnded = false;
-            bool lastMetricEnded = false;
+            int primeMetric = 0, lastMetric = 0;
+            int primeAdjustment = position.Y - position.X;
+            int lastAdjustment = position.Y + position.X;
+            bool primeAxisResolved = false, lastAxisResolved = false;
 
-            var enumerator = new ArrayEnumerator(board.ToArray());
+            bool hasCrossedOrigin = false;
+
+            var enumerator = board.Cells.GetArrayEnumerator();
             while (enumerator.MoveNext())
             {
                 BoardCell cell = (BoardCell) enumerator.Current;
-                bool isOnPrimeAxis = enumerator.Positions[0] == enumerator.Positions[1] + primeOriginAdjustment;
-                bool isOnLastAxis = enumerator.Positions[0] == lastOriginAdjustment - enumerator.Positions[1];
+                Point currentPosition = new Point(enumerator.Positions[0], enumerator.Positions[1]);
 
-                if (enumerator.Positions[0] == position.X && enumerator.Positions[1] == position.Y)
-                {
+                var cellContent = cell == null ? null : cell.Content;
+                var cellPlayer = cellContent == null ? null : cell.Content.Player;
+
+                bool isOnPrimeAxis = primeAdjustment + currentPosition.X == currentPosition.Y,
+                     isOnLastAxis = lastAdjustment - currentPosition.X == currentPosition.Y;
+
+                Debug.WriteLine("({0}, {1}): {2}", currentPosition.X, currentPosition.Y, currentPosition.X + primeAdjustment);
+                if (isOnPrimeAxis && isOnLastAxis)
                     hasCrossedOrigin = true;
-                    continue;
-                }
-
-                if (primeMetricEnded && board[enumerator.Positions[0], enumerator.Positions[1]].Content != null && isOnPrimeAxis && !hasCrossedOrigin)
-                {
-                    if (board[enumerator.Positions[0], enumerator.Positions[1]].Content.Player == this.Player)
-                    {
-                        primeLocation = new Point(enumerator.Positions[0] + 1, enumerator.Positions[1] + 1);
-                        primeMetric = 0;
-                        continue;
-                    }
-                    else if (board[enumerator.Positions[0],enumerator.Positions[1]].Content.Player != this.Player)
-                    {
-                        primeLocation = new Point(enumerator.Positions[0], enumerator.Positions[1]);
-                        primeMetric = 1;
-                        continue;
-                    }
-
-                    primeMetric++;
-                }
-
-                else if (lastMetricEnded && board[enumerator.Positions[0], enumerator.Positions[1]].Content != null && isOnLastAxis && !hasCrossedOrigin)
-                {
-                    if (board[enumerator.Positions[0], enumerator.Positions[1]].Content.Player == this.Player)
-                    {
-                        lastLocation = new Point(enumerator.Positions[0] + 1, enumerator.Positions[1] + 1);
-                        lastMetric = 0;
-                        continue;
-                    }
-                    else if (board[enumerator.Positions[0], enumerator.Positions[1]].Content.Player != this.Player)
-                    {
-                        lastLocation = new Point(enumerator.Positions[0], enumerator.Positions[1]);
-                        lastMetric = 1;
-                        continue;
-                    }
-                    else if (board[enumerator.Positions[0], enumerator.Positions[1]].Content != null && board[enumerator.Positions[0], enumerator.Positions[1]].Content.Player == this.Player && hasCrossedOrigin)
-                    {
-                        lastMetricEnded = true;
-                        continue;
-                    }
-                    lastMetric++;
-                }
+                else if (isOnPrimeAxis && !primeAxisResolved)
+                    primeAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref primeMetric, ref primeLocation, hasCrossedOrigin);
+                else if (isOnLastAxis && !lastAxisResolved)
+                    lastAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref lastMetric, ref lastLocation, hasCrossedOrigin);
             }
 
-            paths[0] = this.GetPath(primeLocation, primeMetric);
-            paths[1] = this.GetPath(lastLocation, lastMetric);
-            return paths;
-        }
-            
-        protected MovementPath GetPath(Point location, Int64 metric)
-        {
-            return new MovementPath(
-                location: location,
-                vectors: new SpecializedMovementVector(
-                    direction: Direction.Diagonal,
-                    metric: metric,
-                    movement: MovementType.All));
+            return new[]
+            {
+                AxisHelper.GetPath(primeLocation, primeMetric, Direction.Diagonal),
+                AxisHelper.GetPath(lastLocation, lastMetric, Direction.Diagonal)
+            };
         }
     }
 }
