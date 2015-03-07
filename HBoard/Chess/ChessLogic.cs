@@ -13,7 +13,7 @@ namespace HBoard.Chess
         {
             if (game == null)
                 throw new ArgumentNullException("game");
-            
+
             var players = game.Players.ToArray();
             if (players.Count(x => !x.Eliminated) == 1)
                 return players.Single();
@@ -54,7 +54,7 @@ namespace HBoard.Chess
 
             while (enumerator.MoveNext())
             {
-                var unit = ((BoardCell)enumerator.Current).Content as ChessUnit;
+                var unit = ((BoardCell) enumerator.Current).Content as ChessUnit;
 
                 if (unit != null)
                     unit.GenerateCache(game.Board, new Point(enumerator.Positions[0], enumerator.Positions[1]));

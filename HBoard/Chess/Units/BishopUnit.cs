@@ -68,8 +68,8 @@ namespace HBoard.Chess.Units
 
             return new[]
             {
-                AxisHelper.GetPath(primeLocation, primeMetric, Direction.Diagonal),
-                AxisHelper.GetPath(lastLocation, lastMetric, Direction.Diagonal)
+                AxisHelper.GetPath(primeLocation, primeMetric, Direction.PrimeDiagonal),
+                AxisHelper.GetPath(lastLocation, lastMetric, Direction.LastDiagonal)
             };
         }
     }

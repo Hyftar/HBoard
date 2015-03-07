@@ -75,8 +75,8 @@ namespace HBoard.Chess.Units
 
             return new[]
             {
-                AxisHelper.GetPath(primePosition, primeMetric, Direction.Diagonal),
-                AxisHelper.GetPath(lastPosition, lastMetric, Direction.Diagonal),
+                AxisHelper.GetPath(primePosition, primeMetric, Direction.PrimeDiagonal),
+                AxisHelper.GetPath(lastPosition, lastMetric, Direction.LastDiagonal),
                 AxisHelper.GetPath(horizontalPosition, horizontalMetric, Direction.Horizontal),
                 AxisHelper.GetPath(verticalPosition, verticalMetric, Direction.Vertical)
             };
