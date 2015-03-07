@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace HBoard.Core
 {
@@ -33,7 +30,8 @@ namespace HBoard.Core
         /// Determines whether the chess unit can be moved to a specific cell.
         /// </summary>
         /// <param name="board">The board that holds the cells.</param>
-        /// <param name="target">The target cell.</param>
+        /// <param name="origin">The origin cell location.</param>
+        /// <param name="target">The target cell location.</param>
         /// <returns>A boolean value indicating whether the unit is able to move to a given cell.</returns>
         public abstract Boolean CanMove(GameBoard board, Point origin, Point target);
     }

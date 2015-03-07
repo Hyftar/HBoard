@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ExtensionLib;
 using HBoard.Chess.Units;
 using HBoard.Core;
 
@@ -52,19 +50,14 @@ namespace HBoard.Chess
             if (game == null)
                 throw new ArgumentNullException("game");
 
-            int x = 0, y = 0;
-            var enumerator = game.Board.Cells.GetEnumerator();
+            var enumerator = game.Board.Cells.GetArrayEnumerator();
 
-            // TODO: substitute the current logic by ExtensionLib's ArrayEnumerator
             while (enumerator.MoveNext())
             {
-                var unit = ((BoardCell) enumerator.Current).Content as ChessUnit;
+                var unit = ((BoardCell)enumerator.Current).Content as ChessUnit;
 
                 if (unit != null)
-                    unit.GenerateCache(game.Board, new Point(x, y));
-
-                y += ++x / game.Board.Width;
-                x %= game.Board.Width;
+                    unit.GenerateCache(game.Board, new Point(enumerator.Positions[0], enumerator.Positions[1]));
             }
         }
     }

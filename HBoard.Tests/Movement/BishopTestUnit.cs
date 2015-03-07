@@ -1,8 +1,5 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Linq;
-using System.IO;
-using ExtensionLib;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HBoard.Core;
 using HBoard.Chess;
@@ -33,8 +30,7 @@ namespace HBoard.Tests.Movement
 
             var bishop = gameContext.Board
                 .Select((x, i) => new { Index = i, Cell = x == null ? null : x.Content as BishopUnit})
-                .Where(x => x.Cell != null)
-                .First();
+                .First(x => x.Cell != null);
 
             var path = bishop.Cell.GetMovementPaths(gameContext.Board, new Point(bishop.Index / 8, bishop.Index % 8)).First();
 
@@ -68,8 +64,7 @@ namespace HBoard.Tests.Movement
 
             var bishop = gameContext.Board
                 .Select((x, i) => new { Index = i, Cell = x == null ? null : x.Content as BishopUnit })
-                .Where(x => x.Cell != null)
-                .First();
+                .First(x => x.Cell != null);
 
             var paths = bishop.Cell.GetMovementPaths(gameContext.Board, new Point(bishop.Index / 8, bishop.Index % 8));
             MovementPath primePath = paths.First(), lastPath = paths.Last();

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HBoard.Core
 {
@@ -13,7 +10,8 @@ namespace HBoard.Core
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Core.GameContext"/> class.
         /// </summary>
-        /// <param name="options"></param>
+        /// <param name="options">The object to use to provide options for this <see cref="T:HBoard.Core.GameContext"/>.</param>
+        /// <param name="players">The array of players.</param>
         public GameContext(GameOptions options, IPlayer[] players)
         {
             this.Options = options;
