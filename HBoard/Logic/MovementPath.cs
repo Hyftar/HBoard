@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Collections;
 
@@ -10,7 +7,7 @@ namespace HBoard.Logic
 {
     public class MovementPath : IEnumerable<IVector>
     {
-        protected List<IVector> vectors = new List<IVector>();
+        protected readonly List<IVector> vectors = new List<IVector>();
 
         public MovementPath(Point location, params IVector[] vectors)
         {

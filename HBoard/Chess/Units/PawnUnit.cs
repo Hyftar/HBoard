@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HBoard.Core;
 using HBoard.Logic;
 
@@ -28,6 +25,7 @@ namespace HBoard.Chess.Units
         /// <summary>
         /// Determines whether the chess unit can be moved to a specific cell.
         /// </summary>
+        /// <param name="board">The container board to use to determine movement possibilites.</param>
         /// <param name="origin">The location of the cell holding the unit.</param>
         /// <param name="target">The location of the targetted cell.</param>
         /// <returns>A boolean value indicating whether the unit is able to move to a given cell.</returns>

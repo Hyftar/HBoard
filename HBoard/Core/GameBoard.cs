@@ -9,7 +9,7 @@ namespace HBoard.Core
 {
     public class GameBoard : IEnumerable<BoardCell>
     {
-        private String INVALID_DIMENSION = "The provided dimension is invalid; the board size cannot be of 0 cells or fewer.";
+        private const String INVALID_DIMENSION = "The provided dimension is invalid; the board size cannot be of 0 cells or fewer.";
 
         internal GameBoard(Int32 size)
         {

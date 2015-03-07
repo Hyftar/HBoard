@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HBoard.Chess;
 using HBoard.Chess.Units;
 using HBoard.Core;
 
@@ -57,20 +53,20 @@ namespace HBoard.Chess.Generation
             {
                 Point offset = new Point(0, i * BOARD_HEIGHT);
 
-                board.AddUnit<RookUnit>(Orientation.Horizontal, white, offset, ClassicBoard.RookPositions);
-                board.AddUnit<RookUnit>(Orientation.Horizontal, black, offset, ClassicBoard.RookPositions);
+                board.AddUnit<RookUnit>(Orientation.Horizontal, white, offset, RookPositions);
+                board.AddUnit<RookUnit>(Orientation.Horizontal, black, offset, RookPositions);
 
-                board.AddUnit<KnightUnit>(Orientation.Horizontal, white, offset, ClassicBoard.KnightPositions);
-                board.AddUnit<KnightUnit>(Orientation.Horizontal, black, offset, ClassicBoard.KnightPositions);
+                board.AddUnit<KnightUnit>(Orientation.Horizontal, white, offset, KnightPositions);
+                board.AddUnit<KnightUnit>(Orientation.Horizontal, black, offset, KnightPositions);
 
-                board.AddUnit<BishopUnit>(Orientation.Horizontal, white, offset, ClassicBoard.BishopPositions);
-                board.AddUnit<BishopUnit>(Orientation.Horizontal, black, offset, ClassicBoard.BishopPositions);
+                board.AddUnit<BishopUnit>(Orientation.Horizontal, white, offset, BishopPositions);
+                board.AddUnit<BishopUnit>(Orientation.Horizontal, black, offset, BishopPositions);
 
-                board.AddUnit<QueenUnit>(Orientation.Horizontal, white, offset, ClassicBoard.QueenPosition);
-                board.AddUnit<QueenUnit>(Orientation.Horizontal, black, offset, ClassicBoard.QueenPosition);
+                board.AddUnit<QueenUnit>(Orientation.Horizontal, white, offset, QueenPosition);
+                board.AddUnit<QueenUnit>(Orientation.Horizontal, black, offset, QueenPosition);
 
-                board.AddUnit<KingUnit>(Orientation.Horizontal, white, offset, ClassicBoard.KingPosition);
-                board.AddUnit<KingUnit>(Orientation.Horizontal, black, offset, ClassicBoard.KingPosition);              
+                board.AddUnit<KingUnit>(Orientation.Horizontal, white, offset, KingPosition);
+                board.AddUnit<KingUnit>(Orientation.Horizontal, black, offset, KingPosition);
             }
         }
     }
