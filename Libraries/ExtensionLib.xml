@@ -4,80 +4,71 @@
         <name>ExtensionLib</name>
     </assembly>
     <members>
-        <member name="T:ExtensionLib.ByteArithmetic">
+        <member name="T:ExtensionLib.ArrayEnumerator">
             <summary>
-            Provides various static methods pertaining to <see cref="T:System.Byte"/> operations.
+            Supports a simple iteration over a generic collection while providing information relative to the position of the enumerator.
             </summary>
         </member>
-        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte},System.Int32,System.Int32,ExtensionLib.ByteOrder)">
+        <member name="M:ExtensionLib.ArrayEnumerator.#ctor">
             <summary>
-            Returns an object of the specified type from a range of bytes within a sequence.
-            </summary>
-            <typeparam name="T">The type of the returned elements.</typeparam>
-            <param name="source">The sequence to extract the bytes from.</param>
-            <param name="position">The starting position of the bytes to extract.</param>
-            <param name="length">The amount of bytes to extract.</param>
-            <param name="endianness">The order in which bytes are read.</param>
-            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
-            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
-            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
-        </member>
-        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte},System.Int32,System.Int32)">
-            <summary>
-            Returns an object of the specified type from a range of bytes within a sequence.
-            </summary>
-            <typeparam name="T">The type of the returned elements.</typeparam>
-            <param name="source">The sequence to extract the bytes from.</param>
-            <param name="position">The starting position of the bytes to extract.</param>
-            <param name="length">The amount of bytes to extract.</param>
-            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
-            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
-            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
-        </member>
-        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte})">
-            <summary>
-            Returns an object of the specified type equivalent to a sequence of bytes.
-            </summary>
-            <typeparam name="T">The type of the returned elements.</typeparam>
-            <param name="source">The sequence of bytes to compute.</param>
-            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
-            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
-            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
-        </member>
-        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte},ExtensionLib.ByteOrder)">
-            <summary>
-            Returns an object of the specified type equivalent to a sequence of bytes.
-            </summary>
-            <typeparam name="T">The type of the returned elements.</typeparam>
-            <param name="source">The sequence of bytes to compute.</param>
-            <param name="endianness">The order in which bytes are read.</param>
-            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
-            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
-            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
-            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
-        </member>
-        <member name="T:ExtensionLib.ByteOrder">
-            <summary>
-            Specifies in which order bytes are handled.
+            Initializes a new instance of the <see cref="T:ExtensionLib.ArrayEnumerator"/> class.
             </summary>
         </member>
-        <member name="F:ExtensionLib.ByteOrder.LittleEndian">
+        <member name="M:ExtensionLib.ArrayEnumerator.#ctor(System.Array)">
             <summary>
-            The least significant byte (lowest address) is stored first.
+            Initializes a new instance of the <see cref="T:ExtensionLib.ArrayEnumerator"/> class.
             </summary>
         </member>
-        <member name="F:ExtensionLib.ByteOrder.BigEndian">
+        <member name="M:ExtensionLib.ArrayEnumerator.MoveNext">
             <summary>
-            The most significant byte (highest address) is stored first.
+            Advances the enumerator to the next element of the collection.
             </summary>
+            <returns>A boolean value indicating whether the enumerator successfully advanced to the next element (true) or if the enumerator has passed the end of the collection (false).</returns>
+            <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created.</exception>
+        </member>
+        <member name="M:ExtensionLib.ArrayEnumerator.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element in the collection.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created.</exception>
+        </member>
+        <member name="P:ExtensionLib.ArrayEnumerator.Index">
+            <summary>
+            Gets the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="P:ExtensionLib.ArrayEnumerator.Positions">
+            <summary>
+            Gets the current positions within the multiple dimensions of the enumerator.
+            </summary>
+        </member>
+        <member name="P:ExtensionLib.ArrayEnumerator.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+            <returns>The element in the collection at the current position of the enumerator.</returns>
         </member>
         <member name="T:ExtensionLib.ExtensionMethods">
             <summary>
             Provides various static extension methods.
             </summary>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.GetArrayEnumerator(System.Array)">
+            <summary>
+            Returns an <see cref="T:ExtensionLib.ArrayEnumerator"/> for a supplied array.
+            </summary>
+            <param name="array">The array to use to create the enumerator.</param>
+            <returns>The created <see cref="T:ExtensionLib.ArrayEnumerator"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="array"/> is null.</exception>
+        </member>
+        <member name="M:ExtensionLib.ExtensionMethods.GetArrayEnumerator``1(System.Array)">
+            <summary>
+            Returns an <see cref="T:ExtensionLib.ArrayEnumerator`1"/> for a supplied array.
+            </summary>
+            <param name="array">The array to use to create the enumerator.</param>
+            <typeparam name="T">The type of the objects to enumerate.</typeparam>
+            <returns>The created <see cref="T:ExtensionLib.ArrayEnumerator`1"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="array"/> is null.</exception>
         </member>
         <member name="M:ExtensionLib.ExtensionMethods.InterpolateRGB(System.Drawing.Color,System.Drawing.Color,System.Double)">
             <summary>
@@ -138,7 +129,7 @@
             </summary>
             <typeparam name="T">The type of the elements to concatenate.</typeparam>
             <param name="list">A collection that contains the objects to concatenate.</param>
-            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="separator">The string to use as a separator. The <paramref name="separator"/> parameter is included in the returned string only if <paramref name="list"/> has more than one element.</param>
             <param name="objectFormat">A standard or custom object format string.</param>
             <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="list"/> is null.</exception>
@@ -149,7 +140,7 @@
             </summary>
             <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
             <param name="list">A collection that contains the objects to concatenate.</param>
-            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="separator">The string to use as a separator. The <paramref name="separator"/> parameter is included in the returned string only if <paramref name="list"/> has more than one element.</param>
             <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
             <param name="args">An array object that contains zero or more objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
             <typeparam name="T">The type of the elements to concatenate.</typeparam>
@@ -161,7 +152,7 @@
             </summary>
             <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
             <param name="list">A collection that contains the objects to concatenate.</param>
-            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="separator">The string to use as a separator. The <paramref name="separator"/> parameter is included in the returned string only if <paramref name="list"/> has more than one element.</param>
             <param name="objectFormat">A standard or custom object format string.</param>
             <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
             <typeparam name="T">The type of the elements to concatenate.</typeparam>
@@ -173,7 +164,7 @@
             </summary>
             <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
             <param name="list">A collection that contains the objects to concatenate.</param>
-            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="separator">The string to use as a separator. The <paramref name="separator"/> parameter is included in the returned string only if <paramref name="list"/> has more than one element.</param>
             <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
             <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
             <param name="args">An array object that contains zero or more objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
@@ -186,7 +177,7 @@
             </summary>
             <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
             <param name="list">A collection that contains the objects to concatenate.</param>
-            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="separator">The string to use as a separator. The <paramref name="separator"/> parameter is included in the returned string only if <paramref name="list"/> has more than one element.</param>
             <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
             <param name="predicate">An array that contains zero or more functions that provide objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
             <typeparam name="T">The type of the elements to concatenate.</typeparam>
@@ -198,7 +189,7 @@
             </summary>
             <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
             <param name="list">A collection that contains the objects to concatenate.</param>
-            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="separator">The string to use as a separator. The <paramref name="separator"/> parameter is included in the returned string only if <paramref name="list"/> has more than one element.</param>
             <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
             <param name="predicate">A function that supplies the objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
             <typeparam name="T">The type of the elements to concatenate.</typeparam>
@@ -210,7 +201,7 @@
             </summary>
             <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
             <param name="list">A collection that contains the objects to concatenate.</param>
-            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="separator">The string to use as a separator. The <paramref name="separator"/> parameter is included in the returned string only if <paramref name="list"/> has more than one element.</param>
             <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
             <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
             <param name="predicate">A function that supplies the objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
@@ -223,7 +214,7 @@
             </summary>
             <returns>A string that consists of the formatted representation of the members of <paramref name="list"/> delimited by the <paramref name="separator"/> string. If <paramref name="list"/> has no members, the method returns <see cref="F:System.String.Empty"/>.</returns>
             <param name="list">A collection that contains the objects to concatenate.</param>
-            <param name="separator">The string to use as a separator. <paramref name="separator"/> is included in the returned string only if <paramref name="list"/> has more than one element.</param>
+            <param name="separator">The string to use as a separator. The <paramref name="separator"/> parameter is included in the returned string only if <paramref name="list"/> has more than one element.</param>
             <param name="format">A composite format string (see <see cref="M:System.String.Format(System.String,System.Object[])"/>).</param>
             <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
             <param name="predicate">An array that contains zero or more functions that provide objects to be used within <see cref="M:System.String.Format(System.String,System.Object[])"/>.</param>
@@ -461,6 +452,132 @@
             <returns>The number of occurrences of the specified characters.</returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
         </member>
+        <member name="T:ExtensionLib.ArrayEnumerator`1">
+            <summary>
+            Supports a simple iteration over a generic collection while providing information relative to the position of the enumerator.
+            </summary>
+            <typeparam name="T">The type of objects to enumerate.</typeparam>
+        </member>
+        <member name="M:ExtensionLib.ArrayEnumerator`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ExtensionLib.ArrayEnumerator`1"/> class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.ArrayEnumerator`1.#ctor(System.Array)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ExtensionLib.ArrayEnumerator`1"/> class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.ArrayEnumerator`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.ArrayEnumerator`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>A boolean value indicating whether the enumerator successfully advanced to the next element (true) or if the enumerator has passed the end of the collection (false).</returns>
+            <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created.</exception>
+        </member>
+        <member name="M:ExtensionLib.ArrayEnumerator`1.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element in the collection.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created.</exception>
+        </member>
+        <member name="P:ExtensionLib.ArrayEnumerator`1.Index">
+            <summary>
+            Gets the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="P:ExtensionLib.ArrayEnumerator`1.Positions">
+            <summary>
+            Gets the current positions within the multiple dimensions of the enumerator.
+            </summary>
+        </member>
+        <member name="P:ExtensionLib.ArrayEnumerator`1.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+            <returns>The element in the collection at the current position of the enumerator.</returns>
+        </member>
+        <member name="P:ExtensionLib.ArrayEnumerator`1.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the current element in the collection.
+            </summary>
+            <returns>The current element in the collection.</returns>
+        </member>
+        <member name="T:ExtensionLib.ByteArithmetic">
+            <summary>
+            Provides various static methods pertaining to <see cref="T:System.Byte"/> operations.
+            </summary>
+        </member>
+        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte},System.Int32,System.Int32,ExtensionLib.ByteOrder)">
+            <summary>
+            Returns an object of the specified type from a range of bytes within a sequence.
+            </summary>
+            <typeparam name="T">The type of the returned elements.</typeparam>
+            <param name="source">The sequence to extract the bytes from.</param>
+            <param name="position">The starting position of the bytes to extract.</param>
+            <param name="length">The amount of bytes to extract.</param>
+            <param name="endianness">The order in which bytes are read.</param>
+            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
+            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
+        </member>
+        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte},System.Int32,System.Int32)">
+            <summary>
+            Returns an object of the specified type from a range of bytes within a sequence.
+            </summary>
+            <typeparam name="T">The type of the returned elements.</typeparam>
+            <param name="source">The sequence to extract the bytes from.</param>
+            <param name="position">The starting position of the bytes to extract.</param>
+            <param name="length">The amount of bytes to extract.</param>
+            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
+            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
+        </member>
+        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            Returns an object of the specified type equivalent to a sequence of bytes.
+            </summary>
+            <typeparam name="T">The type of the returned elements.</typeparam>
+            <param name="source">The sequence of bytes to compute.</param>
+            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
+            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
+        </member>
+        <member name="M:ExtensionLib.ByteArithmetic.GetBytes``1(System.Collections.Generic.IEnumerable{System.Byte},ExtensionLib.ByteOrder)">
+            <summary>
+            Returns an object of the specified type equivalent to a sequence of bytes.
+            </summary>
+            <typeparam name="T">The type of the returned elements.</typeparam>
+            <param name="source">The sequence of bytes to compute.</param>
+            <param name="endianness">The order in which bytes are read.</param>
+            <returns>The equivalent object of the bytes from the parsed region in the sequence.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="source"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException"><paramref name="source"/> contains no elements.</exception>
+            <exception cref="T:System.OverflowException">The sum of the elements in <paramref name="source"/> exceeds the maximum value of the <typeparamref name="T"/> type.</exception>
+        </member>
+        <member name="T:ExtensionLib.ByteOrder">
+            <summary>
+            Specifies in which order bytes are handled.
+            </summary>
+        </member>
+        <member name="F:ExtensionLib.ByteOrder.LittleEndian">
+            <summary>
+            The least significant byte (lowest address) is stored first.
+            </summary>
+        </member>
+        <member name="F:ExtensionLib.ByteOrder.BigEndian">
+            <summary>
+            The most significant byte (highest address) is stored first.
+            </summary>
+        </member>
         <member name="T:ExtensionLib.ControlStyleHelper">
             <summary>
             Provides static methods to alter controls' style attributes.
@@ -513,9 +630,16 @@
             <returns>A human-readable representation of this range.</returns>
         </member>
         <member name="M:ExtensionLib.Range`1.IsValid">
-            <summary>        
+            <summary>
             Determines if the range is valid.
             </summary>
+            <returns>A boolean value indicating whether the range is valid (i.e. if <see cref="P:ExtensionLib.Range.Minimum"/> is lesser or equal to <see cref="P:ExtensionLib.Range.Maximum"/>.</returns>
+        </member>
+        <member name="M:ExtensionLib.Range`1.IsValid(System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Determines if the range is valid.
+            </summary>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use to compare the entries.</param>
             <returns>A boolean value indicating whether the range is valid (i.e. if <see cref="P:ExtensionLib.Range.Minimum"/> is lesser or equal to <see cref="P:ExtensionLib.Range.Maximum"/>.</returns>
         </member>
         <member name="M:ExtensionLib.Range`1.ContainsValue(`0)">
@@ -525,6 +649,14 @@
             <param name="value">The value to test.</param>
             <returns>A boolean value indicating whether the provided value is inside the range.</returns>
         </member>
+        <member name="M:ExtensionLib.Range`1.ContainsValue(`0,System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Determines whether the provided value is inside the range.
+            </summary>
+            <param name="value">The value to test.</param>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use to compare the entries.</param>
+            <returns>A boolean value indicating whether the provided value is inside the range.</returns>
+        </member>
         <member name="M:ExtensionLib.Range`1.IsInsideRange(ExtensionLib.Range{`0})">
             <summary>
             Determines whether the bounds of this range are situated within those of the supplied one.
@@ -532,12 +664,58 @@
             <param name="range">The parent range to test against.</param>
             <returns>A boolean value indicating whether the extrema of this range are inclusive.</returns>
         </member>
+        <member name="M:ExtensionLib.Range`1.IsInsideRange(ExtensionLib.Range{`0},System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Determines whether the bounds of this range are situated within those of the supplied one.
+            </summary>
+            <param name="range">The parent range to test against.</param>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use to compare the entries.</param>
+            <returns>A boolean value indicating whether the extrema of this range are inclusive.</returns>
+        </member>
         <member name="M:ExtensionLib.Range`1.ContainsRange(ExtensionLib.Range{`0})">
             <summary>
-            Determines whether another range is contained within the bounds of this one.
+            Determines whether the supplied range is contained within the bounds of the current one.
             </summary>
             <param name="range">The child range to test.</param>
-            <returns>A boolean value indicating whether the provided range is situated inside this one.</returns>
+            <returns>A boolean value indicating whether the provided range is situated inside the current one.</returns>
+        </member>
+        <member name="M:ExtensionLib.Range`1.ContainsRange(ExtensionLib.Range{`0},System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Determines whether the supplied range is contained within the bounds of the current one.
+            </summary>
+            <param name="range">The child range to test.</param>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use to compare the entries.</param>
+            <returns>A boolean value indicating whether the provided range is situated inside the current one.</returns>
+        </member>
+        <member name="M:ExtensionLib.Range`1.Union(ExtensionLib.Range{`0},System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Produces the union of two contiguous <see cref="T:ExtensionLib.Range`1"/>.
+            </summary>
+            <param name="other">The range to join.</param>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use to compare the entries.</param>
+            <returns>A new range combining the furthest extrema.</returns>
+        </member>
+        <member name="M:ExtensionLib.Range`1.Union(ExtensionLib.Range{`0})">
+            <summary>
+            Produces the union of two contiguous <see cref="T:ExtensionLib.Range`1"/>.
+            </summary>
+            <param name="other">The range to join.</param>
+            <returns>A new range combining the furthest extrema.</returns>
+        </member>
+        <member name="M:ExtensionLib.Range`1.Intersect(ExtensionLib.Range{`0},System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Produces the intersection of two overlapping <see cref="T:ExtensionLib.Range`1"/>.
+            </summary>
+            <param name="other">The range to intersect.</param>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use to compare the entries.</param>
+            <returns>A new range constitued of the furthest shared values.</returns>
+        </member>
+        <member name="M:ExtensionLib.Range`1.Intersect(ExtensionLib.Range{`0})">
+            <summary>
+            Produces the intersection of two overlapping <see cref="T:ExtensionLib.Range`1"/>.
+            </summary>
+            <param name="other">The range to intersect.</param>
+            <returns>A new range constitued of the furthest shared values.</returns>
         </member>
         <member name="P:ExtensionLib.Range`1.Minimum">
             <summary>
@@ -619,6 +797,13 @@
             <param name="firstSeries">The first series of values.</param>
             <param name="secondSeries">The second series of values.</param>
             <returns>The euclidean distance of the supplied series multiplied by a given magnitude.</returns>
+        </member>
+        <member name="M:ExtensionLib.MathHelper.CreateDoubleComparer(System.UInt32)">
+            <summary>
+            Creates a floating-point precision-aware <see cref="T:System.Double"/> comparer.
+            </summary>
+            <param name="precisionMargin">The absolute margin of error tolerated.</param>
+            <returns>The newly created comparer object.</returns>
         </member>
         <member name="T:ExtensionLib.RangeConverter`1">
             <summary>
@@ -734,6 +919,20 @@
             <summary>
             Initializes a new instance of the <see cref="T:ExtensionLib.StringArrayConverter"/> class.
             </summary>
+        </member>
+        <member name="M:ExtensionLib.StringArrayConverter.#ctor(System.String,System.StringSplitOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ExtensionLib.StringArrayConverter"/> class.
+            </summary>
+            <param name="separator">The separator <see cref="T:System.String"/> used to override the one provided by the culture.</param>
+            <param name="options">The <see cref="T:System.StringSplitOptions"/> policy to use for splitting strings.</param>
+        </member>
+        <member name="M:ExtensionLib.StringArrayConverter.#ctor(System.Char,System.StringSplitOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ExtensionLib.StringArrayConverter"/> class.
+            </summary>
+            <param name="separator">The separator <see cref="T:System.Char"/> used to override the one provided by the culture.</param>
+            <param name="options">The <see cref="T:System.StringSplitOptions"/> policy to use for splitting strings.</param>        
         </member>
         <member name="M:ExtensionLib.StringArrayConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
             <summary>
