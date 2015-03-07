@@ -55,8 +55,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DrawTestUnit.cs" />
-    <Compile Include="TestUnits.cs" />
+    <Compile Include="GenerationTestUnit.cs" />
+    <Compile Include="Movement\QueenTestUnit.cs" />
+    <Compile Include="Movement\RookTestUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Movement\BishopTestUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HChess\HBoard.csproj">
