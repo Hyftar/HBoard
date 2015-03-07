@@ -6,8 +6,8 @@
     <ProjectGuid>{1728AF35-3131-4F5F-9E6B-57F13054AC4E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HChess.Tests</RootNamespace>
-    <AssemblyName>HChess.Tests</AssemblyName>
+    <RootNamespace>HBoard.Tests</RootNamespace>
+    <AssemblyName>HBoard.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -62,7 +62,7 @@
     <Compile Include="Movement\BishopTestUnit.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HChess\HBoard.csproj">
+    <ProjectReference Include="..\HBoard\HBoard.csproj">
       <Project>{47d3683e-dbf5-45e2-a2f2-04382f114c52}</Project>
       <Name>HBoard</Name>
     </ProjectReference>
@@ -87,7 +87,7 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

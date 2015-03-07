@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBoard", "HChess\HBoard.csproj", "{47D3683E-DBF5-45E2-A2F2-04382F114C52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBoard", "HBoard\HBoard.csproj", "{47D3683E-DBF5-45E2-A2F2-04382F114C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBoard.Tests", "HChess.Tests\HBoard.Tests.csproj", "{1728AF35-3131-4F5F-9E6B-57F13054AC4E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBoard.Tests", "HBoard.Tests\HBoard.Tests.csproj", "{1728AF35-3131-4F5F-9E6B-57F13054AC4E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{47D3683E-DBF5-45E2-A2F2-04382F114C52} = {47D3683E-DBF5-45E2-A2F2-04382F114C52}
 	EndProjectSection
