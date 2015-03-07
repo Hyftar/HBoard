@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using ExtensionLib;
 using HBoard.Core;
 using HBoard.Logic;
+using HBoard.Chess.Logic;
 
 namespace HBoard.Chess.Units
 {
@@ -34,7 +36,40 @@ namespace HBoard.Chess.Units
 
         public override IEnumerable<MovementPath> GetMovementPaths(GameBoard board, Point position)
         {
-            throw new NotImplementedException();
+            Point horizontalLocation = Point.Empty;
+            Point verticalLocation = Point.Empty;
+
+            int horizontalMetric = 0;
+            int verticalMetric = 0;
+            bool hasCrossedOrigin = false;
+            bool horizontalAxisResolved = false;
+            bool verticalAxisResolved = false;
+
+            var enumerator = board.Cells.GetArrayEnumerator();
+            while (enumerator.MoveNext())
+            {
+                BoardCell cell = (BoardCell) enumerator.Current;
+                Point currentPosition = new Point(enumerator.Positions[0], enumerator.Positions[1]);
+
+                var cellContent = cell == null ? null : cell.Content;
+                var cellPlayer = cellContent == null ? null : cell.Content.Player;
+
+                bool isOnVerticalAxis = currentPosition.Y == position.Y,
+                     isOnHorizontalAxis = currentPosition.X == position.X;
+
+                if (isOnHorizontalAxis && isOnVerticalAxis)
+                    hasCrossedOrigin = true;
+                else if (isOnVerticalAxis && !verticalAxisResolved)
+                    verticalAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref verticalMetric, ref verticalLocation, hasCrossedOrigin);
+                else if (isOnHorizontalAxis && !horizontalAxisResolved)
+                    horizontalAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref horizontalMetric, ref horizontalLocation, hasCrossedOrigin);
+            }
+
+            return new[]
+            {
+                AxisHelper.GetPath(horizontalLocation, horizontalMetric, Direction.Horizontal),
+                AxisHelper.GetPath(verticalLocation, verticalMetric, Direction.Vertical)
+            };
         }
     }
 }

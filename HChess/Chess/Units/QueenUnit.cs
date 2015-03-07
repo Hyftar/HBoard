@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using ExtensionLib;
 using HBoard.Core;
 using HBoard.Logic;
+using HBoard.Chess.Logic;
 
 namespace HBoard.Chess.Units
 {
@@ -34,7 +36,54 @@ namespace HBoard.Chess.Units
 
         public override IEnumerable<MovementPath> GetMovementPaths(GameBoard board, Point position)
         {
-            throw new NotImplementedException();
+            Point primePosition = Point.Empty, // First diagonal position
+                  lastPosition = Point.Empty,  // Second diagonal position
+                  horizontalPosition = Point.Empty,
+                  verticalPosition = Point.Empty;
+
+            int primeMetric = 0, lastMetric = 0;
+            int primeAdjustment = position.Y - position.X,
+                lastAdjustment = position.Y + position.X;
+            bool primeAxisResolved = false, lastAxisResolved = false;
+
+            int horizontalMetric = 0, verticalMetric = 0;
+            bool horizontalAxisResolved = false, verticalAxisResolved = false;
+
+            bool hasCrossedOrigin = false;
+
+            var enumerator = board.Cells.GetArrayEnumerator();
+            while (enumerator.MoveNext())
+            {
+                BoardCell cell = (BoardCell) enumerator.Current;
+                Point currentPosition = new Point(enumerator.Positions[0], enumerator.Positions[1]);
+
+                var cellContent = cell == null ? null : cell.Content;
+                var cellPlayer = cellContent == null ? null : cell.Content.Player;
+
+                bool isOnVerticalAxis = currentPosition.Y == position.Y,
+                     isOnHorizontalAxis = currentPosition.X == position.X,
+                     isOnPrimeAxis = primeAdjustment + currentPosition.X == currentPosition.Y,
+                     isOnLastAxis = lastAdjustment - currentPosition.X == currentPosition.Y;
+
+                if (isOnLastAxis && isOnPrimeAxis)
+                    hasCrossedOrigin = true;
+                else if (isOnPrimeAxis && !primeAxisResolved)
+                    primeAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref primeMetric, ref primePosition, hasCrossedOrigin);
+                else if (isOnLastAxis && !lastAxisResolved)
+                    lastAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref lastMetric, ref lastPosition, hasCrossedOrigin);
+                else if (isOnVerticalAxis && !verticalAxisResolved)
+                    verticalAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref verticalMetric, ref verticalPosition, hasCrossedOrigin);
+                else if (isOnHorizontalAxis && !horizontalAxisResolved)
+                    horizontalAxisResolved =  this.AdvancePosition(cellPlayer, currentPosition, ref horizontalMetric, ref horizontalPosition, hasCrossedOrigin);
+            }
+
+            return new[]
+            {
+                AxisHelper.GetPath(primePosition, primeMetric, Direction.Diagonal),
+                AxisHelper.GetPath(lastPosition, lastMetric, Direction.Diagonal),
+                AxisHelper.GetPath(horizontalPosition, horizontalMetric, Direction.Horizontal),
+                AxisHelper.GetPath(verticalPosition, verticalMetric, Direction.Vertical)
+            };
         }
     }
 }
