@@ -44,8 +44,6 @@ namespace HBoard.Logic
             this.vectors.Clear();
         }
 
-        //public Boolean MatchesCells()
-
         public IEnumerator<IVector> GetEnumerator()
         {
             return this.vectors.GetEnumerator();

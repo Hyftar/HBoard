@@ -1,11 +1,11 @@
 ﻿using System.Drawing;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HBoard.Core;
 using HBoard.Chess;
 using HBoard.Chess.Generation;
 using HBoard.Chess.Units;
-using HBoard.Core;
 using HBoard.Logic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HBoard.Tests.Movement
 {
@@ -32,7 +32,7 @@ namespace HBoard.Tests.Movement
                 .Select((x, i) => new { Index = i, Cell = x == null ? null : x.Content as QueenUnit })
                 .First(x => x.Cell != null);
 
-            var path = queen.Cell.GetMovementPaths(gameContext.Board, new Point(queen.Index / 8, queen.Index % 8)).First();
+            var path = queen.Cell.GetMovementPaths(gameContext.Board, new Point(queen.Index / 8, queen.Index % 8)).First().ToArray();
 
             Assert.AreEqual(0, path.First().Length);
             Assert.AreEqual(0, path.Last().Length);

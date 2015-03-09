@@ -66,7 +66,7 @@ namespace HBoard.Tests.Movement
                 .Select((x, i) => new { Index = i, Cell = x == null ? null : x.Content as BishopUnit })
                 .First(x => x.Cell != null);
 
-            var paths = bishop.Cell.GetMovementPaths(gameContext.Board, new Point(bishop.Index / 8, bishop.Index % 8));
+            var paths = bishop.Cell.GetMovementPaths(gameContext.Board, new Point(bishop.Index / 8, bishop.Index % 8)).ToArray();
             MovementPath primePath = paths.First(), lastPath = paths.Last();
 
             // Prime axis

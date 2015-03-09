@@ -1,7 +1,7 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
 using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ExtensionLib;
 using HBoard.Core;
 using HBoard.Chess;

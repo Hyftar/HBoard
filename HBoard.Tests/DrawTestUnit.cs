@@ -1,12 +1,12 @@
 ﻿using System.Drawing;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ExtensionLib;
 using HBoard.Core;
 using HBoard.Chess;
 using HBoard.Chess.Units;
 using HBoard.Chess.Generation;
-using ExtensionLib;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HBoard.Tests
 {
