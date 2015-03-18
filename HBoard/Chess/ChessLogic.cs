@@ -36,7 +36,7 @@ namespace HBoard.Chess
 
             ChessOptions options = game.Options as ChessOptions;
 
-            if (game.Board.Where(x => x != null && x.Content != null).Count(x => !(x.Content is KingUnit)) == 0)
+            if (game.Board.Count(x => x != null && x.Content != null && !(x.Content is KingUnit)) == 0)
                 return true;
 
             if (options == null)
