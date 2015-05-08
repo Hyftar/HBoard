@@ -7,10 +7,19 @@ using HBoard.Logic;
 
 namespace HBoard.Chess.Units
 {
+    /// <summary>
+    /// Represents a <see cref="T:HBoard.Core.BoardUnit"/> of type queen.
+    /// </summary>
     public class QueenUnit : ChessUnit
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:HBoard.Chess.QueenUnit"/> class.
+        /// </summary>
         public QueenUnit() : base() { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:HBoard.Chess.QueenUnit"/> class.
+        /// </summary>
         public QueenUnit(IPlayer player)
             : base(player) { }
 
@@ -33,20 +42,16 @@ namespace HBoard.Chess.Units
 
         public override IEnumerable<MovementPath> GetMovementPaths(GameBoard board, Point position)
         {
-            Point primePosition = Point.Empty, // First diagonal position
-                  lastPosition = Point.Empty,  // Second diagonal position
-                  horizontalPosition = Point.Empty,
-                  verticalPosition = Point.Empty;
+            Point primeLocation = Point.Empty, // First diagonal position
+                  lastLocation = Point.Empty,  // Second diagonal position
+                  horizontalLocation = Point.Empty,
+                  verticalLocation = Point.Empty;
 
             int primeMetric = 0, lastMetric = 0;
             int primeAdjustment = position.Y - position.X,
                 lastAdjustment = position.Y + position.X;
-            bool primeAxisResolved = false, lastAxisResolved = false;
 
             int horizontalMetric = 0, verticalMetric = 0;
-            bool horizontalAxisResolved = false, verticalAxisResolved = false;
-
-            bool hasCrossedOrigin = false;
 
             var enumerator = board.Cells.GetArrayEnumerator();
             while (enumerator.MoveNext())
@@ -54,14 +59,37 @@ namespace HBoard.Chess.Units
                 BoardCell cell = (BoardCell) enumerator.Current;
                 Point currentPosition = new Point(enumerator.Positions[0], enumerator.Positions[1]);
 
-                var cellContent = cell == null ? null : cell.Content;
-                var cellPlayer = cellContent == null ? null : cell.Content.Player;
-
                 bool isOnVerticalAxis = currentPosition.Y == position.Y,
                      isOnHorizontalAxis = currentPosition.X == position.X,
                      isOnPrimeAxis = primeAdjustment + currentPosition.X == currentPosition.Y,
                      isOnLastAxis = lastAdjustment - currentPosition.X == currentPosition.Y;
 
+                if (isOnLastAxis && isOnPrimeAxis)
+                    continue;
+
+                else if (isOnPrimeAxis)
+                {
+                    if (primeMetric++ == 0)
+                        primeLocation = currentPosition;
+                }
+
+                else if (isOnLastAxis)
+                {
+                    if (lastMetric++ == 0)
+                        lastLocation = currentPosition;
+                }
+                else if (isOnVerticalAxis)
+                {
+                    if (verticalMetric++ == 0)
+                        verticalLocation = currentPosition;
+                }
+                else if (isOnHorizontalAxis)
+                {
+                    if (horizontalMetric++ == 0)
+                        horizontalLocation = currentPosition;
+                }
+
+                /*
                 if (isOnLastAxis && isOnPrimeAxis)
                     hasCrossedOrigin = true;
                 else if (isOnPrimeAxis && !primeAxisResolved)
@@ -72,14 +100,15 @@ namespace HBoard.Chess.Units
                     verticalAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref verticalMetric, ref verticalPosition, hasCrossedOrigin);
                 else if (isOnHorizontalAxis && !horizontalAxisResolved)
                     horizontalAxisResolved =  this.AdvancePosition(cellPlayer, currentPosition, ref horizontalMetric, ref horizontalPosition, hasCrossedOrigin);
+                 */
             }
 
             return new[]
             {
-                AxisHelper.GetPath(primePosition, primeMetric, Direction.PrimeDiagonal),
-                AxisHelper.GetPath(lastPosition, lastMetric, Direction.LastDiagonal),
-                AxisHelper.GetPath(horizontalPosition, horizontalMetric, Direction.Horizontal),
-                AxisHelper.GetPath(verticalPosition, verticalMetric, Direction.Vertical)
+                AxisHelper.GetPath(primeLocation, primeMetric, AxisDirection.PrimeDiagonal),
+                AxisHelper.GetPath(lastLocation, lastMetric, AxisDirection.LastDiagonal),
+                AxisHelper.GetPath(horizontalLocation, horizontalMetric, AxisDirection.Horizontal),
+                AxisHelper.GetPath(verticalLocation, verticalMetric, AxisDirection.Vertical)
             };
         }
     }

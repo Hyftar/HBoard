@@ -14,7 +14,10 @@ namespace HBoard.Chess.Units
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.PawnUnit"/> class.
         /// </summary>
-        public PawnUnit() : base() { }
+        public PawnUnit() : base() 
+        {
+            HasMoved = false;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.PawnUnit"/> class.
@@ -22,6 +25,8 @@ namespace HBoard.Chess.Units
         public PawnUnit(IPlayer player)
             : base(player) { }
 
+        public Boolean HasMoved { get; private set; }
+        
         /// <summary>
         /// Determines whether the chess unit can be moved to a specific cell.
         /// </summary>
@@ -41,7 +46,20 @@ namespace HBoard.Chess.Units
 
         public override IEnumerable<MovementPath> GetMovementPaths(GameBoard board, Point position)
         {
-            throw new NotImplementedException();
+            var player = (ChessPlayer) this.Player;
+            Point vectorStart = position;
+
+            if (player.Direction.Orientation == Orientation.Vertical)
+                vectorStart.X += position.X + player.Direction.Direction == Direction.Forward ? 1 : -1;
+            else if (player.Direction.Orientation == Orientation.Horizontal)
+                vectorStart.Y += player.Direction.Direction == Direction.Forward ? 1 : -1;
+
+            return null;
+        }
+
+        internal override void OnMove(GameBoard board, Point origin, Point target)
+        {
+            HasMoved = true;
         }
     }
 }

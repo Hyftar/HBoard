@@ -8,6 +8,9 @@ using HBoard.Logic;
 
 namespace HBoard.Chess.Units
 {
+    /// <summary>
+    /// Represents a <see cref="T:HBoard.Core.BoardUnit"/> of type bishop.
+    /// </summary>
     public class BishopUnit : ChessUnit
     {
         public BishopUnit() : base() { }
@@ -42,9 +45,6 @@ namespace HBoard.Chess.Units
             int primeMetric = 0, lastMetric = 0;
             int primeAdjustment = position.Y - position.X;
             int lastAdjustment = position.Y + position.X;
-            bool primeAxisResolved = false, lastAxisResolved = false;
-
-            bool hasCrossedOrigin = false;
 
             var enumerator = board.Cells.GetArrayEnumerator();
             while (enumerator.MoveNext())
@@ -52,25 +52,30 @@ namespace HBoard.Chess.Units
                 BoardCell cell = (BoardCell) enumerator.Current;
                 Point currentPosition = new Point(enumerator.Positions[0], enumerator.Positions[1]);
 
-                var cellContent = cell == null ? null : cell.Content;
-                var cellPlayer = cellContent == null ? null : cell.Content.Player;
-
                 bool isOnPrimeAxis = primeAdjustment + currentPosition.X == currentPosition.Y,
                      isOnLastAxis = lastAdjustment - currentPosition.X == currentPosition.Y;
 
                 Debug.WriteLine("({0}, {1}): {2}", currentPosition.X, currentPosition.Y, currentPosition.X + primeAdjustment);
-                if (isOnPrimeAxis && isOnLastAxis)
-                    hasCrossedOrigin = true;
-                else if (isOnPrimeAxis && !primeAxisResolved)
-                    primeAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref primeMetric, ref primeLocation, hasCrossedOrigin);
-                else if (isOnLastAxis && !lastAxisResolved)
-                    lastAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref lastMetric, ref lastLocation, hasCrossedOrigin);
+
+                if (isOnLastAxis && isOnPrimeAxis)
+                    continue;
+                else if (isOnPrimeAxis)
+                {
+                    if (primeMetric++ == 0)
+                        primeLocation = currentPosition;
+                }
+
+                else if (isOnLastAxis)
+                {
+                    if (lastMetric++ == 0)
+                        lastLocation = currentPosition;
+                }
             }
 
             return new[]
             {
-                AxisHelper.GetPath(primeLocation, primeMetric, Direction.PrimeDiagonal),
-                AxisHelper.GetPath(lastLocation, lastMetric, Direction.LastDiagonal)
+                AxisHelper.GetPath(primeLocation, primeMetric, AxisDirection.PrimeDiagonal),
+                AxisHelper.GetPath(lastLocation, lastMetric, AxisDirection.LastDiagonal)
             };
         }
     }

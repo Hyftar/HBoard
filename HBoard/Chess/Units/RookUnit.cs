@@ -7,10 +7,19 @@ using HBoard.Logic;
 
 namespace HBoard.Chess.Units
 {
+    /// <summary>
+    /// Represents a <see cref="T:HBoard.Core.BoardUnit"/> of type rook.
+    /// </summary>
     public class RookUnit : ChessUnit
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:HBoard.Chess.RookUnit"/> class.
+        /// </summary>
         public RookUnit() : base() { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:HBoard.Chess.RookUnit"/> class.
+        /// </summary>
         public RookUnit(IPlayer player)
             : base(player) { }
 
@@ -38,9 +47,6 @@ namespace HBoard.Chess.Units
 
             int horizontalMetric = 0;
             int verticalMetric = 0;
-            bool hasCrossedOrigin = false;
-            bool horizontalAxisResolved = false;
-            bool verticalAxisResolved = false;
 
             var enumerator = board.Cells.GetArrayEnumerator();
             while (enumerator.MoveNext())
@@ -48,24 +54,28 @@ namespace HBoard.Chess.Units
                 BoardCell cell = (BoardCell) enumerator.Current;
                 Point currentPosition = new Point(enumerator.Positions[0], enumerator.Positions[1]);
 
-                var cellContent = cell == null ? null : cell.Content;
-                var cellPlayer = cellContent == null ? null : cell.Content.Player;
-
                 bool isOnVerticalAxis = currentPosition.Y == position.Y,
                      isOnHorizontalAxis = currentPosition.X == position.X;
 
                 if (isOnHorizontalAxis && isOnVerticalAxis)
-                    hasCrossedOrigin = true;
-                else if (isOnVerticalAxis && !verticalAxisResolved)
-                    verticalAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref verticalMetric, ref verticalLocation, hasCrossedOrigin);
-                else if (isOnHorizontalAxis && !horizontalAxisResolved)
-                    horizontalAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref horizontalMetric, ref horizontalLocation, hasCrossedOrigin);
+                    continue;
+
+                else if (isOnVerticalAxis)
+                {
+                    if (verticalMetric++ == 0)
+                        verticalLocation = currentPosition;
+                }
+                else if (isOnHorizontalAxis)
+                {
+                    if (horizontalMetric++ == 0)
+                        horizontalLocation = currentPosition;
+                }
             }
 
             return new[]
             {
-                AxisHelper.GetPath(horizontalLocation, horizontalMetric, Direction.Horizontal),
-                AxisHelper.GetPath(verticalLocation, verticalMetric, Direction.Vertical)
+                AxisHelper.GetPath(horizontalLocation, horizontalMetric, AxisDirection.Horizontal),
+                AxisHelper.GetPath(verticalLocation, verticalMetric, AxisDirection.Vertical)
             };
         }
     }

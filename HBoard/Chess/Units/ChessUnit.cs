@@ -24,6 +24,8 @@ namespace HBoard.Chess.Units
             this.MovementsCache = this.GetMovementPaths(board, position);
         }
 
+        internal virtual void OnMove(GameBoard board, Point origin, Point target) { }
+
         public abstract IEnumerable<MovementPath> GetMovementPaths(GameBoard board, Point position);
     }
 }
