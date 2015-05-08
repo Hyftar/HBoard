@@ -13,10 +13,15 @@ namespace HBoard.Chess.Units
     /// </summary>
     public class BishopUnit : ChessUnit
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:HBoard.Chess.BishopUnit"/> class.
+        /// </summary>
         public BishopUnit() : base() { }
 
-        public BishopUnit(IPlayer player)
-            : base(player) { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:HBoard.Chess.BishopUnit"/> class.
+        /// </summary>
+        public BishopUnit(IPlayer player) : base(player) { }
 
         /// <summary>
         /// Determines whether the chess unit can be moved to a specific cell.

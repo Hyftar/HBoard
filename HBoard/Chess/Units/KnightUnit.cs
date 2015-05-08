@@ -6,10 +6,19 @@ using HBoard.Logic;
 
 namespace HBoard.Chess.Units
 {
+    /// <summary>
+    /// Represents a <see cref="T:HBoard.Core.BoardUnit"/> of type knight.
+    /// </summary>
     public class KnightUnit : ChessUnit
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:HBoard.Chess.KnightUnit"/> class.
+        /// </summary>
         public KnightUnit() : base() { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:HBoard.Chess.KnightUnit"/> class.
+        /// </summary>
         public KnightUnit(IPlayer player)
             : base(player) { }
 

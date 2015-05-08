@@ -7,12 +7,21 @@ namespace HBoard.Chess.Units
 {
     public abstract class ChessUnit : BoardUnit
     {
-        public ChessUnit() : base() { }
+        public ChessUnit() 
+            : base() 
+        {
+            this.HasMoved = false;
+        }
 
         public ChessUnit(IPlayer player)
-            : base(player) { }
+            : base(player) 
+        {
+            this.HasMoved = false;
+
+        }
 
         public IEnumerable<MovementPath> MovementsCache { get; private set; }
+        public bool HasMoved { get; private set; }
 
         public void InvalidateCache()
         {
@@ -24,7 +33,10 @@ namespace HBoard.Chess.Units
             this.MovementsCache = this.GetMovementPaths(board, position);
         }
 
-        internal virtual void OnMove(GameBoard board, Point origin, Point target) { }
+        internal virtual void OnMove(GameBoard board, Point origin, Point target) 
+        {
+            this.HasMoved = true;
+        }
 
         public abstract IEnumerable<MovementPath> GetMovementPaths(GameBoard board, Point position);
     }

@@ -14,18 +14,13 @@ namespace HBoard.Chess.Units
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.PawnUnit"/> class.
         /// </summary>
-        public PawnUnit() : base() 
-        {
-            HasMoved = false;
-        }
+        public PawnUnit() : base() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.PawnUnit"/> class.
         /// </summary>
-        public PawnUnit(IPlayer player)
-            : base(player) { }
+        public PawnUnit(IPlayer player) : base(player) { }
 
-        public Boolean HasMoved { get; private set; }
         
         /// <summary>
         /// Determines whether the chess unit can be moved to a specific cell.
@@ -57,9 +52,6 @@ namespace HBoard.Chess.Units
             return null;
         }
 
-        internal override void OnMove(GameBoard board, Point origin, Point target)
-        {
-            HasMoved = true;
-        }
+        internal override void OnMove(GameBoard board, Point origin, Point target) { }
     }
 }
