@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using HBoard.Core;
+using HBoard.Logic;
 
 namespace HBoard.Chess.Generation
 {

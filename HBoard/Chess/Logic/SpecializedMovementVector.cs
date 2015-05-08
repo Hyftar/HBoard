@@ -5,7 +5,7 @@ namespace HBoard.Chess.Logic
 {
     public struct SpecializedMovementVector : IVector
     {
-        public SpecializedMovementVector(Direction direction, Int64 metric, MovementType movement)
+        public SpecializedMovementVector(AxisDirection direction, Int64 metric, MovementType movement)
             : this()
         {
             this.Direction = direction;
@@ -13,7 +13,7 @@ namespace HBoard.Chess.Logic
             this.Movement = movement;
         }
 
-        public Direction Direction { get; private set; }
+        public AxisDirection Direction { get; private set; }
 
         public Int64 Length { get; private set; }
 

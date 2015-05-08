@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using HBoard.Core;
+using HBoard.Logic;
 
 namespace HBoard.Chess
 {
@@ -25,9 +26,11 @@ namespace HBoard.Chess
         
         public Stopwatch Stopwatch { get; private set; }
         
-        public PlayerType Type { get; set; }
+        public PlayerType Type { get; private set; }
         
-        public CheckState Check { get; set; }
+        public CheckState Check { get; internal set; }
+
+        public AbsoluteDirection Direction { get; private set; }
 
         public override String ToString()
         {

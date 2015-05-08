@@ -1,4 +1,4 @@
-﻿namespace HBoard.Chess.Generation
+﻿namespace HBoard.Logic
 {
     public enum Orientation
     {

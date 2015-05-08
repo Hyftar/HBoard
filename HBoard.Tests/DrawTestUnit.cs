@@ -7,6 +7,7 @@ using HBoard.Core;
 using HBoard.Chess;
 using HBoard.Chess.Units;
 using HBoard.Chess.Generation;
+using HBoard.Logic;
 
 namespace HBoard.Tests
 {

@@ -70,12 +70,12 @@ namespace HBoard.Tests.Movement
             MovementPath primePath = paths.First(), lastPath = paths.Last();
 
             // Prime axis
-            Assert.AreEqual(primePath.First().Direction, Direction.PrimeDiagonal);
+            Assert.AreEqual(primePath.First().Direction, AxisDirection.PrimeDiagonal);
             Assert.AreEqual(3, primePath.First().Length);
             Assert.AreEqual(new Point(2, 3), primePath.Location);
 
             // Last axis
-            Assert.AreEqual(lastPath.First().Direction, Direction.LastDiagonal);
+            Assert.AreEqual(lastPath.First().Direction, AxisDirection.LastDiagonal);
             Assert.AreEqual(7, lastPath.First().Length);
             Assert.AreEqual(new Point(0, 7), lastPath.Location);
         }

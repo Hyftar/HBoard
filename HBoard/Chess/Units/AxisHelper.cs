@@ -30,7 +30,7 @@ namespace HBoard.Chess.Units
             return false;
         }
 
-        public static MovementPath GetPath(Point position, Int64 metric, Direction direction, MovementType movement = MovementType.All)
+        public static MovementPath GetPath(Point position, Int64 metric, AxisDirection direction, MovementType movement = MovementType.All)
         {
             return new MovementPath(
                 location: position,

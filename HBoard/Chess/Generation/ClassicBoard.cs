@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using HBoard.Chess.Units;
 using HBoard.Core;
+using HBoard.Logic;
 
 namespace HBoard.Chess.Generation
 {

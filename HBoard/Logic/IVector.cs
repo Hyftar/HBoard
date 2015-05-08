@@ -4,7 +4,7 @@ namespace HBoard.Logic
 {
     public interface IVector
     {
-        Direction Direction { get; }
+        AxisDirection Direction { get; }
         Int64 Length { get; }
     }
 }
