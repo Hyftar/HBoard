@@ -16,12 +16,13 @@ namespace HBoard.Chess.Units
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.BishopUnit"/> class.
         /// </summary>
-        public BishopUnit() : base() { }
+        public BishopUnit() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.BishopUnit"/> class.
         /// </summary>
-        public BishopUnit(IPlayer player) : base(player) { }
+        public BishopUnit(IPlayer player)
+            : base(player) { }
 
         /// <summary>
         /// Determines whether the chess unit can be moved to a specific cell.
@@ -64,12 +65,12 @@ namespace HBoard.Chess.Units
 
                 if (isOnLastAxis && isOnPrimeAxis)
                     continue;
-                else if (isOnPrimeAxis)
+
+                if (isOnPrimeAxis)
                 {
                     if (primeMetric++ == 0)
                         primeLocation = currentPosition;
                 }
-
                 else if (isOnLastAxis)
                 {
                     if (lastMetric++ == 0)

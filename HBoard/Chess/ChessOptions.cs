@@ -4,7 +4,7 @@ namespace HBoard.Chess
 {
     public class ChessOptions : GameOptions
     {
-        public ChessOptions() : base()
+        public ChessOptions()
         {
             this.CastlingPolicy = CastlingPolicy.Both;
             this.PawnExtraRules = PawnExtension.All;

@@ -23,11 +23,11 @@ namespace HBoard.Chess
         public Boolean Eliminated { get; set; }
 
         public List<BoardUnit> CapturedUnits { get; private set; }
-        
+
         public Stopwatch Stopwatch { get; private set; }
-        
+
         public PlayerType Type { get; private set; }
-        
+
         public CheckState Check { get; internal set; }
 
         public AbsoluteDirection Direction { get; private set; }

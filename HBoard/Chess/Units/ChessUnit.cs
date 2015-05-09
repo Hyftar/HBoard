@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using HBoard.Core;
 using HBoard.Logic;
@@ -7,13 +8,12 @@ namespace HBoard.Chess.Units
 {
     public abstract class ChessUnit : BoardUnit
     {
-        public ChessUnit() 
-            : base() 
+        protected ChessUnit()
         {
             this.HasMoved = false;
         }
 
-        public ChessUnit(IPlayer player)
+        protected ChessUnit(IPlayer player)
             : base(player) 
         {
             this.HasMoved = false;
@@ -21,7 +21,8 @@ namespace HBoard.Chess.Units
         }
 
         public IEnumerable<MovementPath> MovementsCache { get; private set; }
-        public bool HasMoved { get; private set; }
+
+        public Boolean HasMoved { get; private set; }
 
         public void InvalidateCache()
         {

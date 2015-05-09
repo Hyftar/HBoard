@@ -15,7 +15,7 @@ namespace HBoard.Chess.Units
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.QueenUnit"/> class.
         /// </summary>
-        public QueenUnit() : base() { }
+        public QueenUnit() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.QueenUnit"/> class.

@@ -14,14 +14,14 @@ namespace HBoard.Chess.Units
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.PawnUnit"/> class.
         /// </summary>
-        public PawnUnit() : base() { }
+        public PawnUnit() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.PawnUnit"/> class.
         /// </summary>
-        public PawnUnit(IPlayer player) : base(player) { }
+        public PawnUnit(IPlayer player)
+            : base(player) { }
 
-        
         /// <summary>
         /// Determines whether the chess unit can be moved to a specific cell.
         /// </summary>

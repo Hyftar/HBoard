@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HBoard.Logic
+﻿namespace HBoard.Logic
 {
     public struct AbsoluteDirection
     {
-        public AbsoluteDirection(Direction direction, Orientation orientation) : this()
+        public AbsoluteDirection(Direction direction, Orientation orientation)
+            : this()
         {
             this.Direction = direction;
             this.Orientation = orientation;

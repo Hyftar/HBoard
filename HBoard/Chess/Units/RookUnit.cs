@@ -15,7 +15,7 @@ namespace HBoard.Chess.Units
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.RookUnit"/> class.
         /// </summary>
-        public RookUnit() : base() { }
+        public RookUnit() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.RookUnit"/> class.
@@ -60,7 +60,7 @@ namespace HBoard.Chess.Units
                 if (isOnHorizontalAxis && isOnVerticalAxis)
                     continue;
 
-                else if (isOnVerticalAxis)
+                if (isOnVerticalAxis)
                 {
                     if (verticalMetric++ == 0)
                         verticalLocation = currentPosition;

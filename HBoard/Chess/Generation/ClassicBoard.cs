@@ -13,26 +13,26 @@ namespace HBoard.Chess.Generation
                            BOARD_HEIGHT = 8;
 
         #region Relative unit positions
-        public static readonly Point[] RookPositions = new[]
+        public static readonly Point[] RookPositions =
         {
              new Point(0, 0),
              new Point(0, 7)
         };
 
-        private static readonly Point[] KnightPositions = new[]
+        public static readonly Point[] KnightPositions =
         {
             new Point(0, 1),
             new Point(0, 6)
         };
 
-        private static readonly Point[] BishopPositions = new[]
+        public static readonly Point[] BishopPositions =
         {
             new Point(0, 2),
             new Point(0, 5)
         };
 
-        private static readonly Point QueenPosition = new Point(0, 4);
-        private static readonly Point KingPosition = new Point(0, 3);
+        public static readonly Point QueenPosition = new Point(0, 4);
+        public static readonly Point KingPosition = new Point(0, 3);
         #endregion
 
         public static void GenerateClassicBoard(GameContext context, GameBoard board)

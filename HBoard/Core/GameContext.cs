@@ -53,13 +53,12 @@ namespace HBoard.Core
                 return;
 
             this.Initialized = true;
-
             this.Board = new GameBoard(this.Options.BoardSize);
 
             // Initialize/populate the using the provided delegate.
             this.Options.PopulateBoardDelegate(this, this.Board);
         }
-        
+
         /// <summary>
         /// Resets the state of the current <see cref="T:HBoard.Core.GameContext"/>, allowing the object to be reused.
         /// </summary>

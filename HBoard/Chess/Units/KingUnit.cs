@@ -14,7 +14,7 @@ namespace HBoard.Chess.Units
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.KingUnit"/> class.
         /// </summary>
-        public KingUnit() : base() { }
+        public KingUnit() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:HBoard.Chess.KingUnit"/> class.

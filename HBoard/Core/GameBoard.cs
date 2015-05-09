@@ -8,12 +8,12 @@ namespace HBoard.Core
 {
     public class GameBoard : IEnumerable<BoardCell>
     {
-        private const String INVALID_DIMENSION = "The provided dimension is invalid; the board size cannot be of 0 cells or fewer.";
+        private const String INVALID_DIMENSION_EXCEPTION_MESSAGE = "The provided dimension is invalid; the board size cannot be of 0 cells or fewer.";
 
         internal GameBoard(Int32 size)
         {
             if (size <= 0)
-                throw new ArgumentException("size", INVALID_DIMENSION);
+                throw new ArgumentException("size", INVALID_DIMENSION_EXCEPTION_MESSAGE);
 
             this.Size = new Size(size, size);
             this.InitializeBoard();
@@ -22,10 +22,10 @@ namespace HBoard.Core
         internal GameBoard(Int32 width, Int32 height)
         {
             if (width <= 0)
-                throw new ArgumentException("width", INVALID_DIMENSION);
+                throw new ArgumentException("width", INVALID_DIMENSION_EXCEPTION_MESSAGE);
 
             if (height <= 0)
-                throw new ArgumentException("height", INVALID_DIMENSION);
+                throw new ArgumentException("height", INVALID_DIMENSION_EXCEPTION_MESSAGE);
 
             this.Size = new Size(width, height);
             this.InitializeBoard();
@@ -34,8 +34,8 @@ namespace HBoard.Core
         internal GameBoard(Size size)
         {
             if (size.Width <= 0 || size.Height <= 0)
-                throw new ArgumentException("size", INVALID_DIMENSION);
-            
+                throw new ArgumentException("size", INVALID_DIMENSION_EXCEPTION_MESSAGE);
+
             this.Size = size;
             this.InitializeBoard();
         }
