@@ -28,7 +28,7 @@ namespace HBoard.Chess.Units
         /// </summary>
         /// <param name="board">The container board to use to determine movement possibilities.</param>
         /// <param name="origin">The location of the cell holding the unit.</param>
-        /// <param name="target">The location of the targetted cell.</param>
+        /// <param name="target">The location of the targeted cell.</param>
         /// <returns>A boolean value indicating whether the unit is able to move to a given cell.</returns>
         public override Boolean CanMove(GameBoard board, Point origin, Point target)
         {
@@ -56,8 +56,8 @@ namespace HBoard.Chess.Units
             var enumerator = board.Cells.GetArrayEnumerator();
             while (enumerator.MoveNext())
             {
-                BoardCell cell = (BoardCell) enumerator.Current;
-                Point currentPosition = new Point(enumerator.Positions[0], enumerator.Positions[1]);
+                var cell = (BoardCell) enumerator.Current;
+                var currentPosition = new Point(enumerator.Positions[0], enumerator.Positions[1]);
 
                 bool isOnVerticalAxis = currentPosition.Y == position.Y,
                      isOnHorizontalAxis = currentPosition.X == position.X,
@@ -67,12 +67,11 @@ namespace HBoard.Chess.Units
                 if (isOnLastAxis && isOnPrimeAxis)
                     continue;
 
-                else if (isOnPrimeAxis)
+                if (isOnPrimeAxis)
                 {
                     if (primeMetric++ == 0)
                         primeLocation = currentPosition;
                 }
-
                 else if (isOnLastAxis)
                 {
                     if (lastMetric++ == 0)
@@ -88,19 +87,6 @@ namespace HBoard.Chess.Units
                     if (horizontalMetric++ == 0)
                         horizontalLocation = currentPosition;
                 }
-
-                /*
-                if (isOnLastAxis && isOnPrimeAxis)
-                    hasCrossedOrigin = true;
-                else if (isOnPrimeAxis && !primeAxisResolved)
-                    primeAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref primeMetric, ref primePosition, hasCrossedOrigin);
-                else if (isOnLastAxis && !lastAxisResolved)
-                    lastAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref lastMetric, ref lastPosition, hasCrossedOrigin);
-                else if (isOnVerticalAxis && !verticalAxisResolved)
-                    verticalAxisResolved = this.AdvancePosition(cellPlayer, currentPosition, ref verticalMetric, ref verticalPosition, hasCrossedOrigin);
-                else if (isOnHorizontalAxis && !horizontalAxisResolved)
-                    horizontalAxisResolved =  this.AdvancePosition(cellPlayer, currentPosition, ref horizontalMetric, ref horizontalPosition, hasCrossedOrigin);
-                 */
             }
 
             return new[]

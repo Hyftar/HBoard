@@ -45,8 +45,8 @@ namespace HBoard.Tests.Movement
             {
                 PopulateBoardDelegate = delegate(GameContext context, GameBoard board)
                 {
-                    ChessPlayer white = (ChessPlayer) context.Players.First(),
-                                black = (ChessPlayer) context.Players.Last();
+                    var white = (ChessPlayer) context.Players.First(),
+                        black = (ChessPlayer) context.Players.Last();
 
                     board.AddUnit<RookUnit>(Orientation.Vertical, white, Point.Empty, new Point(3, 4));
                     board.AddUnit<BishopUnit>(Orientation.Vertical, white, Point.Empty, new Point(1, 4));

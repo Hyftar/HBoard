@@ -54,10 +54,10 @@ namespace HBoard.Core
         public BoardCell[,] Cells { get; private set; }
 
         public BoardCell this[Int32 x, Int32 y]
-	    {
-		    get { return this.GetCell(x, y); }
+        {
+            get { return this.GetCell(x, y); }
             set { this.Cells[x, y] = value; }
-	    }
+        }
 
         public BoardCell this[Point point]
         {

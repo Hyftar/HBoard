@@ -21,8 +21,8 @@ namespace HBoard.Tests
             {
                 PopulateBoardDelegate = delegate(GameContext context, GameBoard board)
                 {
-                    ChessPlayer white = (ChessPlayer) context.Players.First(),
-                                black = (ChessPlayer) context.Players.Last();
+                    var white = (ChessPlayer) context.Players.First(),
+                        black = (ChessPlayer) context.Players.Last();
 
                     board.AddUnit<KingUnit>(Orientation.Vertical, white, Point.Empty, new Point(0, 4));
                     board.AddUnit<KingUnit>(Orientation.Vertical, black, Point.Empty, new Point(0, 4));

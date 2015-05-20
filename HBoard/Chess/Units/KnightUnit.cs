@@ -27,7 +27,7 @@ namespace HBoard.Chess.Units
         /// </summary>
         /// <param name="board">The container board to use to determine movement possibilities.</param>
         /// <param name="origin">The location of the cell holding the unit.</param>
-        /// <param name="target">The location of the targetted cell.</param>
+        /// <param name="target">The location of the targeted cell.</param>
         /// <returns>A boolean value indicating whether the unit is able to move to a given cell.</returns>
         public override Boolean CanMove(GameBoard board, Point origin, Point target)
         {

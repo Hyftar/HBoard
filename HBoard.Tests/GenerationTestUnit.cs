@@ -40,15 +40,15 @@ namespace HBoard.Tests
                 sw.Write(@"
 <head>
 <style type=""text/css"">
-	table {
-		border: 10px solid #665229;
-		}
-	td, th {
-		width: 100px;
-		height: 100px;
-		text-align: center;
-		border: 2px solid black;
-	}
+    table {
+        border: 10px solid #665229;
+        }
+    td, th {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        border: 2px solid black;
+    }
     .white {
         background-color: #FFCC66;
         color: black;

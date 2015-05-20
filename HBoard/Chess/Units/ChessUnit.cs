@@ -14,10 +14,9 @@ namespace HBoard.Chess.Units
         }
 
         protected ChessUnit(IPlayer player)
-            : base(player) 
+            : base(player)
         {
             this.HasMoved = false;
-
         }
 
         public IEnumerable<MovementPath> MovementsCache { get; private set; }
@@ -34,7 +33,7 @@ namespace HBoard.Chess.Units
             this.MovementsCache = this.GetMovementPaths(board, position);
         }
 
-        internal virtual void OnMove(GameBoard board, Point origin, Point target) 
+        internal virtual void OnMove(GameBoard board, Point origin, Point target)
         {
             this.HasMoved = true;
         }
