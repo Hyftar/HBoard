@@ -12,5 +12,7 @@ namespace HBoard.Chess
 
         public CastlingPolicy CastlingPolicy { get; set; }
         public PawnExtension PawnExtraRules { get; set; }
+        public int TimeLimit { get; set; }
+        public int TimeIncrement { get; set; }
     }
 }
